@@ -1,6 +1,4 @@
 #lang racket
-#|Variable für eine Nautische Meile|#
-(define nm 1.852)
 
 #|Berechnet das Bogenmaß aus einer gegebenen Gradzahl nach der Formel:
 (Grad * 2pi) / 360|#
@@ -14,8 +12,23 @@
 
 #|Berechnet aus Nautischen Meilen die Kilometer|#
 (define (nm-to-km nauticalMile)
-  (* nauticalMile nm))
+  (* nauticalMile 1.852))
 
 #|Arkuskosinus|#
 (define (my-acos winkel)
-  (* 2 (atan(sqrt (/ (- 1 winkel(+ 1 winkel)))))))
+  (* 2 (atan (sqrt (/ (- 1 winkel) (+ 1 winkel))))))
+
+
+(define (distanzAB laengeA breiteA laengeB breiteB)
+  (nm-to-km (* 60 (bogenmassZuGrad (my-acos (bogenmassDistanzHilfe laengeA breiteA laengeB breiteB))))))
+
+
+(define (bogenmassDistanzHilfe laengeA breiteA laengeB breiteB)
+  (+
+   (* (sin (gradZuBogenmass breiteA))
+      (sin (gradZuBogenmass breiteB)) )
+     (* (cos (gradZuBogenmass breiteA))
+        (cos (gradZuBogenmass breiteB))
+        (cos (abs (- 
+              (gradZuBogenmass laengeB)
+                (gradZuBogenmass laengeA)))))))

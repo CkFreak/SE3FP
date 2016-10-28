@@ -15,3 +15,7 @@
 #|Berechnet aus Nautischen Meilen die Kilometer|#
 (define (nm-to-km nauticalMile)
   (* nauticalMile nm))
+
+#|Arkuskosinus|#
+(define (my-acos winkel)
+  (* 2 (atan(sqrt (/ (- 1 winkel(+ 1 winkel)))))))

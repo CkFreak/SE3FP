@@ -1,5 +1,28 @@
 #lang racket
 
+(define (radians-->degrees radians)
+  (* (/ 360 (* 2 pi)) radians))
+
+(define (degrees-->radians degrees)
+  (* (/ (* 2 pi) 360) degrees))
+
+(define (nm-->km nm)
+  (* nm 1.852))
+
+(define (my-acos cos)
+  (atan (/ (sqrt (- 1 (sqr cos))) cos)))
+
+(define sinphia (sin (degrees-->radians 59.95)))
+(define sinphib (sin (degrees-->radians 22.20)))
+(define cosphia (cos (degrees-->radians 59.93)))
+(define cosphib (cos (degrees-->radians 22.20)))
+(define cosdiff (cos (- (degrees-->radians 10.75) (degrees-->radians 114.10))))
+(define dG (+ (* sinphia sinphib) (* cosphia cosphib cosdiff)))
+
+(define distanzAB
+(nm-->km (* 60 (radians-->degrees(my-acos dG)))))
+
+
 ;;2.3 Himmelsrichtungen
 ;Grad in Himmelsrichtung umwandeln
 (define (gradZuHimmelsrichtung grad)
@@ -42,4 +65,3 @@
       [(equal? richtung 'NW) 315]
       [(equal? richtung 'WNW) 337.5]   
       ))
-

@@ -1,44 +1,5 @@
 #lang racket
 
-#|1 Konversionsfunktionen|#
-;;1.1 Bogenmaß und Grad
-;Grad zu Bogenmaß
-(define (gradZuBogenmass grad)
-  (* (/ (* 2 pi) 360) grad))
-
-;Bogenmaß zu Grad
-(define (bogenmassZuGrad bogen)
-(* (/ 360 (* 2 pi)) bogen))
-
-;;1.2 Umkehrfunktion
-(define (my-acos winkel)
-  (* 2 (atan (sqrt (/ (- 1 winkel) (+ 1 winkel))))))
-
-;;1.3 Kilometer und Seemeilen
-(define (nm-to-km nauticalMile)
-  (* nauticalMile 1.852))
-
-#|2 Großkreisentfernung und Kurse|#
-;;2.1 Großkreisentfernung
-(define (distanzAB laengeA breiteA laengeB breiteB)
-  (nm-to-km (* 60 (bogenmassZuGrad (acos
-                                    (bogenmassDistanzHilfe (gradZuBogenmass laengeA)
-                                                           (gradZuBogenmass breiteA)
-                                                           (gradZuBogenmass laengeB)
-                                                           (gradZuBogenmass breiteB)))))))
-
-;Hilfsfunktion für 2.1
-(define (bogenmassDistanzHilfe laengeA breiteA laengeB breiteB)
-  (+
-   (* (sin breiteA)
-      (sin breiteB) )
-     (* (cos breiteA)
-        (cos breiteB)
-        (cos (- 
-              laengeB
-                laengeA)))))
-
-
 ;;2.3 Himmelsrichtungen
 ;Grad in Himmelsrichtung umwandeln
 (define (gradZuHimmelsrichtung grad)

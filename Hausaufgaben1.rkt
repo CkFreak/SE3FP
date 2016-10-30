@@ -1,27 +1,53 @@
 #lang racket
+#|1 Konversionsfunktionen|#
 
+;;1.1Bogenmaß und Grad
+
+;Bogenmaß zu Grad
 (define (radians-->degrees radians)
   (* (/ 360 (* 2 pi)) radians))
 
+;Grad zu Bogenmaß
 (define (degrees-->radians degrees)
   (* (/ (* 2 pi) 360) degrees))
 
-(define (nm-->km nm)
-  (* nm 1.852))
-
+;;1.2 Umkehrfunktion acos
 (define (my-acos cos)
   (atan (/ (sqrt (- 1 (sqr cos))) cos)))
 
-(define sinphia (sin (degrees-->radians 59.95)))
-(define sinphib (sin (degrees-->radians 22.20)))
-(define cosphia (cos (degrees-->radians 59.93)))
-(define cosphib (cos (degrees-->radians 22.20)))
-(define cosdiff (cos (- (degrees-->radians 10.75) (degrees-->radians 114.10))))
-(define dG (+ (* sinphia sinphib) (* cosphia cosphib cosdiff)))
+;;1.3 Kilometer und Seemeilen
+(define (nm-->km nm)
+  (* nm 1.852))
 
-(define distanzAB
-(nm-->km (* 60 (radians-->degrees(my-acos dG)))))
 
+#|2 Großkreisentfernung und Kurse|#
+
+
+;;2.1 Großkreisentfernung
+(define (distanzAB laenge0 laenge1 breite0 breite1)
+(nm-->km (* 60 (radians-->degrees(my-acos (dG laenge0 laenge1 breite0 breite1))))))
+
+;Berechnet mit hilfe anderer Hilfsfunktionen die Entfernung zweier Punkte auf der Erdoberfläche
+(define (dG laenge0 laenge1 breite0 breite1)
+  (+ (* (sinphia laenge0) (sinphib laenge1)) (* (cosphia laenge0)
+                                                (cosphib laenge1)
+                                                (cosdiff breite0 breite1))))
+
+;Eine Reihe von Hilfsfunktionen zur Entfernungsberechnug 
+(define (cosdiff breite0 breite1)
+(cos (- (degrees-->radians breite0) (degrees-->radians breite1))))
+
+(define (cosphib breite)
+  (cos (degrees-->radians breite)))
+
+(define (cosphia laenge)
+  (cos (degrees-->radians laenge)))
+
+(define (sinphib breite)
+  (sin (degrees-->radians breite)))
+
+(define (sinphia laenge)
+  (sin (degrees-->radians laenge)))
 
 ;;2.3 Himmelsrichtungen
 ;Grad in Himmelsrichtung umwandeln

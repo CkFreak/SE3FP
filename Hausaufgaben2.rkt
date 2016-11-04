@@ -27,7 +27,7 @@
 8. (welcherNameGiltWo 'harry 'potter) --> 'harry (Ausdruecke werden nicht nacheinander ausgewertet)
 9. (cdddr xs1) --> '(miau katze) (Liste wird ohne erste 3 Elemente ausgegeben (3 x d))
 10 (cdr xs2) --> '(Plueschi) (Liste Plueschi Plueschi ohne 1. Element)
-11. (cdr xs3) --> '(Plueschi . Plueschi) (cons fuegt 2 Elemente zu einem Paar zusammen)
+11. (cdr xs3) --> 'Plueschi (cons fuegt 2 Elemente zu einem Paar zusammen, das 1. fällt weg)
 12. (eval (sqrt 3)) --> 1.7320508075688772, da es hier keine Quote gibt und so sqrt einfach ausgewertet wird
 13. (eval ’(welcherNameGiltWo ’tiger ’katze)) --> 'tiger, weil welcherNameGiltWo ausgewertet wird und PersonA immer ausgegeben wird--> 'tiger
 14. (eval (welcherNameGiltWo ’katze ’tiger )) --> 'miau, weil tiger ausgewertet wird

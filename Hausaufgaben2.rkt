@@ -57,11 +57,11 @@ eval ignoriert die erste Quote die es findet und wertet dem Ausdruck aus
 
 ;;2.3 Die Eulerzahl
 (define (euler)
-  (/(berechneEuler 1) 2))
+  (/(berechneEuler 1 2) 2))
 
-(define (berechneEuler x)
-  (if (>= x (/ 1 (power 10 1000)))
-      x
-      (+ x ((berechneEuler (/(+ x 1) (fakul (- x 1))))))))
+(define (berechneEuler zaehler nenner)
+  (if (>= (/ zaehler nenner) (/ 1 (power 10 1000)))
+      (+ (/ zaehler nenner) 1)
+      (+ (/ zaehler (fakul nenner)) (/ (+ zaehler 1) (+ (fakul (+ nenner 1)))))))
 
         

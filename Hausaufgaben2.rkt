@@ -49,13 +49,19 @@ eval ignoriert die erste Quote die es findet und wertet dem Ausdruck aus
        (* n (fakul (- n 1)))))))
 ;;2.2 Potenzen von Rationalen Zahlen
 (define (power r n)
-  (if (> n 0)
   (if (= n 0)
       1 
   (if (odd? n)
       (* r (power r (- n 1)))
-      (sqr (power r (/ n 2)))))
-  "Der Exponent muss positiv sein"))
+      (sqr (power r (/ n 2))))))
 
+;;2.3 Die Eulerzahl
+(define (euler)
+  (/(berechneEuler 1) 2))
+
+(define (berechneEuler x)
+  (if (>= x (/ 1 (power 10 1000)))
+      x
+      (+ x ((berechneEuler (/(+ x 1) (fakul (- x 1))))))))
 
         

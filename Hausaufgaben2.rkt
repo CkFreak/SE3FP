@@ -41,6 +41,21 @@ eval ignoriert die erste Quote die es findet und wertet dem Ausdruck aus
 ;Berechnet die Fakultät einer Zahl nach der rekursiven Formel n! = n * (n-1)!
 ;Die Abbruchbedingung ist n = 0 --> 1
 (define (fakul n)
+  (if (negative? n)
+      "n muss Element der Natürlichen Zahlen sein"
+(
   (if (= n 0)
       1
-       (* n (fakul (- n 1)))))
+       (* n (fakul (- n 1)))))))
+;;2.2 Potenzen von Rationalen Zahlen
+(define (power r n)
+  (if (> n 0)
+  (if (= n 0)
+      1 
+  (if (odd? n)
+      (* r (power r (- n 1)))
+      (sqr (power r (/ n 2)))))
+  "Der Exponent muss positiv sein"))
+
+
+        

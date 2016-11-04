@@ -34,3 +34,13 @@
 
 eval ignoriert die erste Quote die es findet und wertet dem Ausdruck aus
 |#
+
+#|Aufgabe 2 Rechnen mit exakten Zahlen|#
+
+;;2.1 Die Fakultät einer Zahl
+;Berechnet die Fakultät einer Zahl nach der rekursiven Formel n! = n * (n-1)!
+;Die Abbruchbedingung ist n = 0 --> 1
+(define (fakul n)
+  (if (= n 0)
+      1
+       (* n (fakul (- n 1)))))

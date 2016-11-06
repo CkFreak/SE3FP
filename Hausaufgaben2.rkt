@@ -60,8 +60,36 @@ eval ignoriert die erste Quote die es findet und wertet dem Ausdruck aus
   (/(berechneEuler 1 2) 2))
 
 (define (berechneEuler zaehler nenner)
-  (if (>= (/ zaehler nenner) (/ 1 (power 10 1000)))
+  (if (< (/ zaehler nenner) (/ 1 (power 10 1000)))
       (+ (/ zaehler nenner) 1)
       (+ (/ zaehler (fakul nenner)) (/ (+ zaehler 1) (+ (fakul (+ nenner 1)))))))
 
+
+#|Aufgabe 3 Typenprädikate|#
+
+(define (type-of x)
+  (cond [(boolean? x) "Boolean"]
+        [(pair? x) "Pair"]
+        [(list? x) "List"]
+        [(symbol? x) "Symbol"]
+        [(number? x) "Number"]
+        [(char? x) "Char"]
+        [(string? x) "String"]
+        [(vector? x) "Vector"]
+        [(procedure? x) "Procedure"]))
+
+(define (id z)
+  z)
+
+#|
+(type-of (* 2 3 4)) --> Number. 2*3*4 ist 24 und somit immer noch eine Number
+(type-of (not 42)) --> Boolean. not wertet den Ausdruck zu einem wahrheitswert aus. Daher hier Boolean
+(type-of '(eins zwei drei)) --> Pair
+(type-of '()) --> List. Auch eine leere Liste ist eine Liste
+(type-of (id sin)) --> Procedure. id gibt die eingabe wieder aus. sin ist ein Procedure
+(type-of (string-ref "Harry_Potter_und_der_Stein_der_Weisen" 3)) --> Char. Der Dritte Buchstabe des Strings ist ein char
+(type-of (lambda (x) x)) --> Procedure
+(type-of type-of) --> Procedure
+(type-of (type-of type-of)) --> String
+|#
         

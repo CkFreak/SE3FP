@@ -89,7 +89,7 @@ eval ignoriert die erste Quote die es findet und wertet dem Ausdruck aus
 (type-of (id sin)) --> Procedure. id gibt die eingabe wieder aus. sin ist ein Procedure
 (type-of (string-ref "Harry_Potter_und_der_Stein_der_Weisen" 3)) --> Char. Der Dritte Buchstabe des Strings ist ein char
 (type-of (lambda (x) x)) --> Procedure
-(type-of type-of) --> Procedure
+(type-of type-of) --> Procedure. Type-of ist ein Procedure und wird als solches erkannt
 (type-of (type-of type-of)) --> String
 |#
         

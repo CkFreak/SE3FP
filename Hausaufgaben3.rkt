@@ -154,3 +154,28 @@
   (eval (cadr (assoc buchstabe Flaggentafel))
   )
 )
+
+(define (CharToFlag buchstabe)
+  (eval (cadr (assoc buchstabe Flaggentafel))
+  )
+)
+
+;A2.3 FEHLERHAFT
+(define (Wort->FlagList string)
+  (
+    charlist->FlagList (string->list string)
+  )
+)
+(define (charlist->FlagList charlist)
+  (
+   if (empty? charlist)    
+    '()
+     ( 
+      cons
+      (CharToFlag
+      (car charlist)
+      )      
+      (charlist->FlagList (cdr charlist))
+    )
+  )
+)

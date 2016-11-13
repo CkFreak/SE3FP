@@ -145,3 +145,12 @@
     (#\9 Z9)
   )
 )
+
+;;A2.2
+;;Bildet einen Char auf seinen Flagge ab
+;;Akzeptiert nur Großbuchstaben und Zahlen 0-9
+
+(define (CharToFlag buchstabe)
+  (eval (cadr (assoc buchstabe Flaggentafel))
+  )
+)

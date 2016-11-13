@@ -46,7 +46,8 @@
      (#\8 "Oktoeight")
      (#\9 "Novenine")
      (#\, "Decimal")
-     (#\. "Stop")))
+     (#\. "Stop")
+     (#\space "Space")))
 ;;Aufgabe 1.2
 ;;Bildet einen Char auf seinen Buchstabierschlüssel ab
 ;;Akzeptiert nur Großbuchstaben
@@ -102,16 +103,3 @@
     )
   )
 )
-
-
-;;Aufgabe 1.4
-;;Nimmt ein ganzes Wort und assoziiert jeden Buchstaben mit seinem Buchstabierschlüssel
-(define (string->buchstabierschluessel wort emptyString)
-  (if (not (null? wort))
-      (let ([wortAlsChars (string->list wort)])
-        (let ([ausgabe (string-append emptyString)])
-        (string-append(CharToKey (first wortAlsChars)))
-        (string->buchstabierschluessel (substring wort 1) ausgabe)
-        
-        ))
-      (emptyString)))

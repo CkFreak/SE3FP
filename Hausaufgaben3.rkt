@@ -59,7 +59,7 @@
               (list #\B "Bravo")
               (list #\C "Charlie")
               (list #\D "Delta")
-              (list #\E  "Echo")
+              (list #\E "Echo")
               (list #\F "Foxtrott")
               (list #\G "Golf")
               (list #\H "Hotel")

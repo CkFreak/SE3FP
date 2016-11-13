@@ -63,16 +63,12 @@
 ;;werden so belassen wie sie sind und ausgegeben
 (define (char->key buchstabe)
   ( CharToKey 
-    ( if
-      (char? buchstabe)
-      (       
+    (   
         if (char-lower-case? buchstabe) 
         
         (char-upcase buchstabe)
         
-        buchstabe
-      )     
-      buchstabe
+        buchstabe      
     )
   )
 )

@@ -47,7 +47,9 @@
                            (list #\, "Decimal")
                            (list #\. "Stop")))
 
-
+;;Aufgabe 1.2
+;;Bildet einen Char auf seinen Buchstabierschlüssel ab
+;;Akzeptiert nur Großbuchstaben
 (define (char->schluessel char)
   (for-each (lambda (letter)
               (if (equal? (second letter) char)
@@ -107,6 +109,7 @@
       ;wenn es kein char ist, teile das mit
       (display "This is not a Char!")))
 
-
+;;Aufgabe 1.4
+;;Nimmt ein ganzes Wort und assoziiert jeden Buchstaben mit seinem Buchstabierschlüssel
 (define (string->buchstabierschluessel wort)
   (let ([wortAlsChars (string->list wort)]) wortAlsChars))

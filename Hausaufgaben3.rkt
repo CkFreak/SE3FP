@@ -35,16 +35,16 @@
      (#\X "X-ray")
      (#\Y "Yankee")
      (#\Z "Zulu")
-     (0 "Nadazero")
-     (1 "Unaone")
-     (2 "Bissotwo")
-     (3 "Terrathree")
-     (4 "Kartefour")
-     (5 "Pantafive")
-     (6 "Soxisix")
-     (7 "Setteseven")
-     (8 "Oktoeight")
-     (9 "Novenine")
+     (#\0 "Nadazero")
+     (#\1 "Unaone")
+     (#\2 "Bissotwo")
+     (#\3 "Terrathree")
+     (#\4 "Kartefour")
+     (#\5 "Pantafive")
+     (#\6 "Soxisix")
+     (#\7 "Setteseven")
+     (#\8 "Oktoeight")
+     (#\9 "Novenine")
      (#\, "Decimal")
      (#\. "Stop")))
 ;;Aufgabe 1.2
@@ -75,6 +75,34 @@
     )
   )
 )
+
+;A1.4
+
+; Wandelt einen String in eine Liste von der Schlüssel
+(define (Wort->KeyList string)
+  (
+    charlist->KeyList (string->list string)
+  )
+)
+; Wir erhalten eine Liste der Zeichen des Wortes
+; Ist das Wort leer geben wir eine leere Liste wieder
+; Ansonsten erstellen wir eine neue Liste und Wandeln das erste Zeichen
+; In den Schlüssel um und rufen dann den Rest der Zeichenliste rekursiv auf
+; also ohne das vorherige erste Element. 
+(define (charlist->KeyList charlist)
+  (
+   if (empty? charlist)    
+    '()
+     ( 
+      cons
+      (char->key
+      (car charlist)
+      )      
+      (charlist->KeyList (cdr charlist))
+    )
+  )
+)
+
 
 ;;Aufgabe 1.4
 ;;Nimmt ein ganzes Wort und assoziiert jeden Buchstaben mit seinem Buchstabierschlüssel

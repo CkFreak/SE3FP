@@ -73,19 +73,19 @@
   )
 )
 
-;A1.4
+;;A1.4
 
-; Wandelt einen String in eine Liste von der Schlüssel
+;; Wandelt einen String in eine Liste von der Schlüssel
 (define (Wort->KeyList string)
   (
     charlist->KeyList (string->list string)
   )
 )
-; Wir erhalten eine Liste der Zeichen des Wortes
-; Ist das Wort leer geben wir eine leere Liste wieder
-; Ansonsten erstellen wir eine neue Liste und Wandeln das erste Zeichen
-; In den Schlüssel um und rufen dann den Rest der Zeichenliste rekursiv auf
-; also ohne das vorherige erste Element. 
+;; Wir erhalten eine Liste der Zeichen des Wortes
+;; Ist das Wort leer geben wir eine leere Liste wieder
+;; Ansonsten erstellen wir eine neue Liste und Wandeln das erste Zeichen
+;; In den Schlüssel um und rufen dann den Rest der Zeichenliste rekursiv auf
+;; also ohne das vorherige erste Element. 
 (define (charlist->KeyList charlist)
   (
    if (empty? charlist)    
@@ -100,7 +100,11 @@
   )
 )
 
-;A2.1
+;;A2.1 Entwurf einer Datenstruktur für die Flaggen.
+;; Auch hier ist die Idee jedem Char eine Flagge zuzuordnen und diese als Pair
+;; in einer Liste zu assoziieren.
+;; Die Buchstaben sind in der richtigen Reihenfolge von A-Z, für die Flaggen A-Z, gefolgt von den Zahlen
+;; 0-9 für die Flaggen Z0-Z9 angeordnet
 (define Flaggentafel 
   '(
     (#\A A)

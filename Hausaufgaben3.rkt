@@ -155,10 +155,6 @@
   )
 )
 
-(define (CharToFlag buchstabe)
-  (eval (cadr (assoc buchstabe Flaggentafel))
-  )
-)
 
 ;A2.3 FEHLERHAFT
 (define (Wort->FlagList string)

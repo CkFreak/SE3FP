@@ -102,3 +102,32 @@ Aufgabe 1 Auswertung von Ausdrücken
                  
   )
 
+;Aufgabe 3.1:
+
+( define ( hoch4 x ) ( * x x x x ) )
+( hoch4 ( * 3 (+ 1 ( hoch4 2 ) ) ) )
+#|Innere Reduktion: Der Ausdruck wird von innen nach außen ausgewertet:
+Bei (hoch4 (* 3 (+ 1 (hoch4 2)))) wird mit (hoch4 2) begonnen := 16.
+Nun wird der nächst-innere Ausdruck ausgewertet: (+ 1 16) := 17.
+Nun (* 3 17) := 51
+Zuletzt (hoch4 51) = 6.765.201
+Aeußere Reduktion: Der Ausdruck wird von außen nach innen ausgewertet:
+Bei (hoch4 (* 3 (+ 1 (hoch4 2 )))) wird (hoch4 (...)) zuerst ausgewerte:
+(* (* 3 (+ 1 (hoch4 2))) (* 3 (+ 1 (hoch4 2))) (* 3 (+ 1 (hoch4 2))) (* 3 (+ 1 (hoch4 2 )))).
+Jetzte alle Ausdrücke der höchsten auswertbaren Ebene von links nach rechts:
+(hoch4 2):
+(* (* 3 (+ 1 (* 2 2 2 2))) (* 3 (+ 1 (* 2 2 2 2))) (* 3 (+ 1 (* 2 2 2 2))) (* 3 (+ 1 (* 2 2 2 2)))).
+Erst jetzt wird wirklich angefangen Werte einzusetzen:
+(* (* 3 (+ 1 16)) (* 3 (+ 1 (* 2 2 2 2))) (* 3 (+ 1 (* 2 2 2 2))) (* 3 (+ 1 (* 2 2 2 2))))
+(* (* 3 17) (* 3 (+ 1 (* 2 2 2 2))) (* 3 (+ 1 (* 2 2 2 2))) (* 3 (+ 1 (* 2 2 2 2))))
+(* 51 (* 3 (+ 1 (* 2 2 2 2))) (* 3 (+ 1 (* 2 2 2 2))) (* 3 (+ 1 (* 2 2 2 2))))
+(* 51 (* 3 (+ 1 16)) (* 3 (+ 1 (* 2 2 2 2))) (* 3 (+ 1 (* 2 2 2 2))))
+(* 51 (* 3 17) (* 3 (+ 1 (* 2 2 2 2))) (* 3 (+ 1 (* 2 2 2 2))))
+(* 51 51 (* 3 (+ 1 (* 2 2 2 2))) (* 3 (+ 1 (* 2 2 2 2))))
+(* 51 51 (* 3 (+ 1 16)) (* 3 (+ 1 (* 2 2 2 2))))
+(* 51 51 (* 3 17) (* 3 (+ 1 (* 2 2 2 2))))
+(* 51 51 51 (* 3 (+ 1 (* 2 2 2 2))))
+(* 51 51 51 (* 3 (+ 1 16))))
+(* 51 51 51 (* 3 17))
+(* 51 51 51 51) = 6765201.
+|#

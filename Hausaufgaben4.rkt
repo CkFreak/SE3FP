@@ -136,3 +136,11 @@ Erst jetzt wird wirklich angefangen Werte einzusetzen:
 
 ; In Racket wird für Funktionen die innere Reduktion und für
 ; Spezialformen die äußere Reduktion angewendet.
+
+#|
+Selbstgeschriebenen Funktionen arbeiten bei Racket nach der inneren Reduktion,
+dass bedeutet das wir in unserem new-if erstmal die else-clause berechnen, speziell in unserem Beispiel
+bedeutet es, dass wir immer wieder die faculty function rekursiv aufrufen, bevor überhaupt geprüft wird,
+ob(> counter max−count) eintritt, unsere Funktion terminiert also nicht.
+|#
+

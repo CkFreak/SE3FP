@@ -137,6 +137,8 @@ Erst jetzt wird wirklich angefangen Werte einzusetzen:
 ; In Racket wird für Funktionen die innere Reduktion und für
 ; Spezialformen die äußere Reduktion angewendet.
 
+;Aufgabe 3.3:
+
 #|
 Selbstgeschriebenen Funktionen arbeiten bei Racket nach der inneren Reduktion,
 dass bedeutet das wir in unserem new-if erstmal die else-clause berechnen, speziell in unserem Beispiel

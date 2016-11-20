@@ -131,3 +131,8 @@ Erst jetzt wird wirklich angefangen Werte einzusetzen:
 (* 51 51 51 (* 3 17))
 (* 51 51 51 51) = 6765201.
 |#
+
+;Aufgabe 3.2:
+
+; In Racket wird für Funktionen die innere Reduktion und für
+; Spezialformen die äußere Reduktion angewendet.

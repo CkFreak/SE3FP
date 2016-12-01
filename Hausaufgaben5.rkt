@@ -17,25 +17,25 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
 |#
 
 (define (fluelFarbe)
-  '( ("gruen")
-   ("rot")
-   ("blau")
-   ("gelb")))
+  '( ("gruen" 1)
+   ("rot" 2)
+   ("blau" 3)
+   ("gelb" 4)))
 
 (define (fuehlerForm)
-  '(("gekruemt")
-    ("geschweift")
-    ("grade")))
+  '(("gekruemt" 1)
+    ("geschweift" 2)
+    ("grade" 3)))
 
 (define (fluegelForm)
-  '(("rhombisch")
-    ("elliptisch")
-    ("hexagonal")))
+  '(("rhombisch" 1)
+    ("elliptisch" 2)
+    ("hexagonal" 3)))
 
 (define (muster)
-  '(("sterne")
-    ("punkte")
-    ("streifen")))
+  '(("sterne" 1)
+    ("punkte" 2)
+    ("streifen" 3)))
 
 (define (fluegel fluegelM fuehlerM formM musterM fluegelV fuehlerV formV musterV anzahlKinder)
   (

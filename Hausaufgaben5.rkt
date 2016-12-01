@@ -16,26 +16,30 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
           Flügelform: Hält alle Flügelformen von dominant nach rezesiv
 |#
 
-(define (fluelFarbe)
-  '( ("gruen" 1)
-     ("rot" 2)
-     ("blau" 3)
-     ("gelb" 4)))
-
-(define (fuehlerForm)
+(define fuehlerForm
   '(("gekruemt" 1)
     ("geschweift" 2)
     ("grade" 3)))
 
-(define (fluegelForm)
+(define fluegelForm
   '(("rhombisch" 1)
     ("elliptisch" 2)
     ("hexagonal" 3)))
 
-(define (muster)
+(define muster
   '(("sterne" 1)
     ("punkte" 2)
     ("streifen" 3)))
+
+(define alleMerkmale '(gruen, rot, blau, gelb, gekruemt, geschweift, grade, rhombisch, elliptisch, hexagonal, sterne, punkte, streifen))
+
+(define fluegelFarbe '(grün rot blau gelb))
+
+;;Vergleicht, welches der beiden eingegebenen Elemente dominanter ist.
+(define (dominanzTest m1 m2 liste)
+  (if (member m2 (member m1 liste))
+      (display m2)
+      (display m1)))
 
 (define (fluegel fluegelM fuehlerM formM musterM fluegelV fuehlerV formV musterV anzahlKinder)
   (0))

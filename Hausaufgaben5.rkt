@@ -18,9 +18,9 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
 
 (define (fluelFarbe)
   '( ("gruen" 1)
-   ("rot" 2)
-   ("blau" 3)
-   ("gelb" 4)))
+     ("rot" 2)
+     ("blau" 3)
+     ("gelb" 4)))
 
 (define (fuehlerForm)
   '(("gekruemt" 1)
@@ -38,6 +38,15 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
     ("streifen" 3)))
 
 (define (fluegel fluegelM fuehlerM formM musterM fluegelV fuehlerV formV musterV anzahlKinder)
-  (
+  (0))
 
-(define (mendelHilfe 
+(define (mendelHilfe)0)
+
+
+
+(define (gibRezesivesMerkmal merkmalsIndex merkmalsListe)
+  (if 
+   (equal? (car (last merkmalsListe)) merkmalsIndex)
+   (random ( - merkmalsIndex 1) (last (last merkmalsListe)))
+   (gibRezesivesMerkmal (merkmalsIndex (cdr merkmalsListe)))))
+  

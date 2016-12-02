@@ -33,6 +33,14 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
       (display m2)
       (display m1)))
 
+(define (dominanzTestListe erstesMerkmal zweitesMerkmal merkmalsliste)
+(if (and (empty? erstesMerkmal) (empty? zweitesMerkmal))
+         '()
+         (if (member (car zweitesMerkmal) (member (car erstesMerkmal) (car merkmalsliste)))
+             (cons (car zweitesMerkmal) (dominanzTestListe (cdr erstesMerkmal) (cdr zweitesMerkmal) (cdr merkmalsliste)))
+             (cons (car erstesMerkmal) (dominanzTestListe (cdr erstesMerkmal) (cdr zweitesMerkmal) (cdr merkmalsliste)))
+         )))
+
 ;;Diese Funktion generiert die Kinder am ende. Sie braucht als eingabe alle Dominanten und Rezesiven merkmale der Eltern und die anzhal der Kinder 
 ;;M steht für Mutter V steht für Vater R steht für Rezesiv und D für Dominant
 (define (produceKids fluegelMD fluegelMR fuehlerMD fuehlerMR formMD formMR musterMD musterMR fluegelVD fluegelVR fuehlerVD fuehlerVR formVD formVR musterVD musterVR anzahlKinder)

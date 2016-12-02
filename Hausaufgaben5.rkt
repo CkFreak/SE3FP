@@ -19,13 +19,14 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
 
 (define fluegelFarbe '(green red blue yellow))
 
-(define fluegForm '(rhomb ellipse hexagon))
+(define muster '(star dots stripes))
 
 (define fuehlerForm '(straight curly curved))
 
-(define muster '(star dots stripes))
+(define fluegelForm '(rhomb ellipse hexagon))
 
-(define alleMerkmale '((green red blue yellow) (rhombe ellipse hexagon) (straight curly curved) (star dots stripes)))
+
+(define alleMerkmale '((green red blue yellow) (star dots stripes) (straight curly curved)  (rhomb ellipse hexagon)))
 
 ;; Vergleicht zwei merkmalslisten von Schmetterlingen mit der großen alleMerkmale liste und gibt dann einen einzelnen Schmetterlingsmerkmalsbaum aus
 (define (dominanzTestListe erstesMerkmal zweitesMerkmal merkmalsliste)
@@ -38,11 +39,16 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
 
 ;;Diese Funktion generiert die Kinder am ende. Sie braucht als eingabe alle Dominanten und Rezesiven merkmale der Eltern und die anzhal der Kinder 
 ;;M steht für Mutter V steht für Vater R steht für Rezesiv und D für Dominant
-(define (produceKids fluegelMD fluegelMR fuehlerMD fuehlerMR formMD formMR musterMD musterMR fluegelVD fluegelVR fuehlerVD fuehlerVR formVD formVR musterVD musterVR anzahlKinder)
-  (0))
+(define (produceKids fluegelMD musterMD fuehlerMD formMD fluegelMR musterMR fuehlerMR formMR fluegelVD musterVD fuehlerVD formVD fluegelVR musterVR fuehlerVR formVR anzahlKinder)
+  (zeichneSchmetterlinge (dominanzTestListe (merkmalsShuffle (list fluegelMD musterMD fuehlerMD formMD) (list fluegelMR musterMR fuehlerMR formMR))
+                                            (merkmalsShuffle (list fluegelVD musterVD fuehlerVD formVD) (list fluegelVR musterVR fuehlerVR formVR))
+                                            alleMerkmale)))
 
+;;Diese Funktion macht aus einer liste dominanter und einer liste rezesiver merkmale eine neue liste mit einer mischung aus beiden und gibt diese dann zurück
 (define (merkmalsShuffle merkmalslisteDominant merkmalslisteRezesiv)
 (if (and (empty? merkmalslisteDominant) (empty? merkmalslisteRezesiv))
     '()
     (cons (car (shuffle (list  (car merkmalslisteDominant) (car merkmalslisteRezesiv)))) (merkmalsShuffle (cdr merkmalslisteDominant) (cdr merkmalslisteRezesiv)))))
     
+(define (zeichneSchmetterlinge merkmale)
+  (apply show-butterfly merkmale))

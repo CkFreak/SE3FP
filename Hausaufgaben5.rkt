@@ -27,12 +27,7 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
 
 (define alleMerkmale '((green red blue yellow) (rhombe ellipse hexagon) (straight curly curved) (star dots stripes)))
 
-;;Vergleicht, welches der beiden eingegebenen Elemente dominanter ist.
-(define (dominanzTest m1 m2 liste)
-  (if (member m2 (member m1 liste))
-      (display m2)
-      (display m1)))
-
+;; Vergleicht zwei merkmalslisten von Schmetterlingen mit der großen alleMerkmale liste und gibt dann einen einzelnen Schmetterlingsmerkmalsbaum aus
 (define (dominanzTestListe erstesMerkmal zweitesMerkmal merkmalsliste)
 (if (and (empty? erstesMerkmal) (empty? zweitesMerkmal))
          '()
@@ -46,4 +41,8 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
 (define (produceKids fluegelMD fluegelMR fuehlerMD fuehlerMR formMD formMR musterMD musterMR fluegelVD fluegelVR fuehlerVD fuehlerVR formVD formVR musterVD musterVR anzahlKinder)
   (0))
 
-
+(define (merkmalsShuffle merkmalslisteDominant merkmalslisteRezesiv)
+(if (and (empty? merkmalslisteDominant) (empty? merkmalslisteRezesiv))
+    '()
+    (cons (car (shuffle (list  (car merkmalslisteDominant) (car merkmalslisteRezesiv)))) (merkmalsShuffle (cdr merkmalslisteDominant) (cdr merkmalslisteRezesiv)))))
+    

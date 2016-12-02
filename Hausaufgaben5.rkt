@@ -21,11 +21,11 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
 
 (define fluegForm '(rhomb ellipse hexagon))
 
-(define fuehlerForm '(curly curved straight))
+(define fuehlerForm '(straight curly curved))
 
 (define muster '(star dots stripes))
 
-(define alleMerkmale '((green red blau gelb) (rhombisch elliptisch hexagonal) (grkruemt geschweift grade) (sterne punkte streifen)))
+(define alleMerkmale '((green red blue yellow) (rhombe ellipse hexagon) (straight curly curved) (star dots stripes)))
 
 ;;Vergleicht, welches der beiden eingegebenen Elemente dominanter ist.
 (define (dominanzTest m1 m2 liste)

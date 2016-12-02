@@ -34,6 +34,9 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
 (define alleMerkmale '(gruen, rot, blau, gelb, gekruemt, geschweift, grade, rhombisch, elliptisch, hexagonal, sterne, punkte, streifen))
 
 (define fluegelFarbe '(grün rot blau gelb))
+(define fluegForm '(rhombisch elliptisch hexagonal))
+(define fuehlerForm '(gekruemt geschweift grade))
+(define muster '(sterne punkte streifen))
 
 ;;Vergleicht, welches der beiden eingegebenen Elemente dominanter ist.
 (define (dominanzTest m1 m2 liste)

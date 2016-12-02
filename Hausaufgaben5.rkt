@@ -16,27 +16,16 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
           Flügelform: Hält alle Flügelformen von dominant nach rezesiv
 |#
 
-(define fuehlerForm
-  '(("gekruemt" 1)
-    ("geschweift" 2)
-    ("grade" 3)))
 
-(define fluegelForm
-  '(("rhombisch" 1)
-    ("elliptisch" 2)
-    ("hexagonal" 3)))
+(define fluegelFarbe '(green red blue yellow))
 
-(define muster
-  '(("sterne" 1)
-    ("punkte" 2)
-    ("streifen" 3)))
+(define fluegForm '(rhomb ellipse hexagon))
 
-(define alleMerkmale '(gruen, rot, blau, gelb, gekruemt, geschweift, grade, rhombisch, elliptisch, hexagonal, sterne, punkte, streifen))
+(define fuehlerForm '(curly curved straight))
 
-(define fluegelFarbe '(grün rot blau gelb))
-(define fluegForm '(rhombisch elliptisch hexagonal))
-(define fuehlerForm '(gekruemt geschweift grade))
-(define muster '(sterne punkte streifen))
+(define muster '(star dots stripes))
+
+(define alleMerkmale '((green red blau gelb) (rhombisch elliptisch hexagonal) (grkruemt geschweift grade) (sterne punkte streifen)))
 
 ;;Vergleicht, welches der beiden eingegebenen Elemente dominanter ist.
 (define (dominanzTest m1 m2 liste)
@@ -44,16 +33,9 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
       (display m2)
       (display m1)))
 
-(define (fluegel fluegelM fuehlerM formM musterM fluegelV fuehlerV formV musterV anzahlKinder)
+;;Diese Funktion generiert die Kinder am ende. Sie braucht als eingabe alle Dominanten und Rezesiven merkmale der Eltern und die anzhal der Kinder 
+;;M steht für Mutter V steht für Vater R steht für Rezesiv und D für Dominant
+(define (produceKids fluegelMD fluegelMR fuehlerMD fuehlerMR formMD formMR musterMD musterMR fluegelVD fluegelVR fuehlerVD fuehlerVR formVD formVR musterVD musterVR anzahlKinder)
   (0))
 
-(define (mendelHilfe)0)
 
-
-
-(define (gibRezesivesMerkmal merkmalsIndex merkmalsListe)
-  (if 
-   (equal? (car (last merkmalsListe)) merkmalsIndex)
-   (random ( - merkmalsIndex 1) (last (last merkmalsListe)))
-   (gibRezesivesMerkmal (merkmalsIndex (cdr merkmalsListe)))))
-  

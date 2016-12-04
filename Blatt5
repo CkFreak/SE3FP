@@ -36,6 +36,12 @@ sind und ermöglicht einen einfachen Umgang mit denn Eigenschaften.
 |#
 
 
+;Eine Liste mit Unterlisten für:
+;Farbe
+;Muster
+;Fühlerform
+;Flügelform
+;Je weiter links das Merkmal in den Unterlisten steht, desto Dominanter ist es
 (define alleMerkmale
   (list
        (list 'green 'red 'blue 'yellow)
@@ -45,9 +51,14 @@ sind und ermöglicht einen einfachen Umgang mit denn Eigenschaften.
        )
   )
 
+;Eine Hilfsfunktion, die ein zufälliges Element aus einer Liste wiedergibt
 (define (randomListPick liste)
   (list-ref liste (random (length liste))))
 
+;Eine Hilfsfunktion, welche die Liste der Merkmale durchgeht und das erste
+;Element welches aus einer anderen Liste kommt wiedergibt
+;(getDominantOfList '(a b c d) '(c d)) --> c
+;(getDominantOfList '(d b a c) '(c d)) --> d
 (define (getDominantOfList merkmalList list)
   (if
    (empty? merkmalList)
@@ -60,9 +71,15 @@ sind und ermöglicht einen einfachen Umgang mit denn Eigenschaften.
    )
   )
 
+;Nimmt die Liste dominanter Merkmale, ermittel dann die rezessiven Merkmale, wählt dann jeweils
+;ein rezssives Merkmal aus um sie dann mit den dominanten Merkmalen wieder zusammenzufügen und dann jeweils
+;etwa die rezessiven oder dominanten Merkmale auszugeben 
 (define (randomUebergebeneGene dominantGene)
       (map randomListPick(map list dominantGene(map randomListPick(map member dominantGene alleMerkmale)))))
 
+;Durch die obere Funktion erhalten wir die zufälligen Merkmale der Elter aus denen wir, mit
+;Berücksichtigung der Dominanzregeln, die Merkmale des Kindes bestimmen
+;Danach zeichnen wir das Kind.
 (define (createChild motherDominant fatherDominant)
   (let 
       (
@@ -71,13 +88,30 @@ sind und ermöglicht einen einfachen Umgang mit denn Eigenschaften.
       (display (show-butterfly (car childAttributs) (cadr childAttributs) (caddr childAttributs) (cadddr childAttributs))))
   )
 
-(define (drawChildren motherDominant fatherDominant children)
+;Zeichnet count-viele Kinder, durch Übergabe der Dominanten Merkmale der Eltern als Liste
+;Bsp. (drawChildren (list 'blue 'stripes 'curved 'hexagon)(list 'red 'star 'curly 'ellipse ) 2 )
+(define (drawChildren motherDominant fatherDominant count)
   (createChild motherDominant fatherDominant)
   (if
-   (> children 1)
-   (drawChildren motherDominant fatherDominant (- 1 children))
+   (> count 1)
+   (drawChildren motherDominant fatherDominant (- 1 count))
    (display "\n")
   )
 )
 
-; Form:(drawChildren (list 'red 'star 'curly 'ellipse )(list 'red 'star 'curly 'ellipse ) 2 )
+
+;Testfälle
+
+;Sinnvoll um die Dominanzregeln zu testen
+
+;Dominanteste Merkmale --> Hohe Warscheinlichkeit das Kinder 'green 'star 'straight 'rhomb werden
+(drawChildren (list 'green 'star 'straight 'rhomb)(list 'green 'star 'straight 'rhomb) 2 )
+
+;Immer Gleich bleibende Kinder, da die rezessivsten Merkmale genommen wurden
+(drawChildren (list 'yellow 'stripes 'curved 'hexagon)(list 'yellow 'stripes 'curved 'hexagon) 2 )
+
+;Dominanteste Merkmale eine Elterteils und rezzesivte Mermale eines ELternteils --> Große Vielfalt der Kinder
+(drawChildren (list 'green 'star 'straight 'rhomb)(list 'yellow 'stripes 'curved 'hexagon) 2 )
+
+
+

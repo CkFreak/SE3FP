@@ -40,7 +40,7 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
 ;;Diese Funktion generiert die Kinder am ende. Sie braucht als eingabe alle Dominanten und Rezesiven merkmale der Eltern und die anzhal der Kinder 
 ;;M steht für Mutter V steht für Vater R steht für Rezesiv und D für Dominant
 (define (produceKids fluegelMD musterMD fuehlerMD formMD fluegelMR musterMR fuehlerMR formMR fluegelVD musterVD fuehlerVD formVD fluegelVR musterVR fuehlerVR formVR anzahlKinder)
-  (zeichneSchmetterlinge (dominanzTestListe (merkmalsShuffle (list fluegelMD musterMD fuehlerMD formMD) (list fluegelMR musterMR fuehlerMR formMR))
+      (zeichneSchmetterlinge (dominanzTestListe (merkmalsShuffle (list fluegelMD musterMD fuehlerMD formMD) (list fluegelMR musterMR fuehlerMR formMR))
                                             (merkmalsShuffle (list fluegelVD musterVD fuehlerVD formVD) (list fluegelVR musterVR fuehlerVR formVR))
                                             alleMerkmale)))
 
@@ -50,5 +50,13 @@ Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum reze
     '()
     (cons (car (shuffle (list  (car merkmalslisteDominant) (car merkmalslisteRezesiv)))) (merkmalsShuffle (cdr merkmalslisteDominant) (cdr merkmalslisteRezesiv)))))
     
-(define (zeichneSchmetterlinge merkmale)
-  (apply show-butterfly merkmale))
+(define (zeichneSchmetterlinge listeSchmetterlingsmerkmale)
+  (display (map (lambda (butterfly) (apply show-butterfly butterfly))
+                (append '() listeSchmetterlingsmerkmale))))
+
+(define (butterflyRekursiv anzahlKinder vaterR vaterD mutterR mutterD)
+  (letrec ( [inner (lambda (i kinderliste)
+                     (if (= i 0)
+                         (zeichneSchmetterlinge kinderliste)
+                          (inner (- i 1) (append kinderliste (list ((merkmalsShuffle vaterD vaterR) (merkmalsShuffle mutterD mutterR)))))))])
+     (inner anzahlKinder '())))

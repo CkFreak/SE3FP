@@ -1,0 +1,62 @@
+#lang racket
+#| SE 3 FP Hausaufgaben Blatt 05, Blaesch, Ramburger, Ney |#
+(require se3-bib/butterfly-module)
+#|
+Aufgabe 1.1
+Funktionen: (generateFamily flügelformMutter flügelFormVater fühlerFormMutter füherformVater farbeMutter farbeVater musterMutter musterVater anzahlKinder) -> Generiert die Kinder durch zugriff auf die
+rezesiven und dominanten Merkmale der Schmetterlinge. Elternmerkmale werden eingelesen, mit rezesiven ergänzt und dann zufällig an die Kinder verteilt. Gibt auch eine Liste mit allen Merkmalen der
+Kinder und Eltern aus. 
+Hilfsfunktionen: (randomRezesiveMerkmale) Gibt für einen Schmetterling 4 neue rezesive Merkmale aus den Tabellen wieder.
+                 (merkmalsVergleichMitListe merkmal) Das Merkmal wird in der Liste gesucht und eine Liste mit dem Merkmal und dem Rest wird ausgegeben als rezesives Random element
+Tabellen: Musterung: Hält alle möglichen Muster vom dominantesten bis zum rezesivsten
+          Flügelfarbe: Hält alle Flügelfarben von dominant nach rezesiv
+          Fühlerform: Hält alle Fühlerformen von dominant nach rezesiv
+          Flügelform: Hält alle Flügelformen von dominant nach rezesiv
+|#
+
+
+(define alleMerkmale
+  (list
+       (list 'green 'red 'blue 'yellow)
+       (list 'star 'dots 'stripes)
+       (list 'straight 'curly 'curved)
+       (list 'rhomb 'ellipse 'hexagon)
+       )
+  )
+
+(define (randomListPick liste)
+  (list-ref liste (random (length liste))))
+
+(define (getDominantOfList merkmalList list)
+  (if
+   (empty? merkmalList)
+   '()
+  (if
+    (list? (member (car merkmalList) list))
+    (car merkmalList)
+    (getDominantOfList (cdr merkmalList) list)
+    )
+   )
+  )
+
+(define (randomUebergebeneGene dominantGene)
+      (map randomListPick(map list dominantGene(map randomListPick(map member dominantGene alleMerkmale)))))
+
+(define (createChild motherDominant fatherDominant)
+  (let*
+      (
+      [childAttributs (map getDominantOfList alleMerkmale (map list (randomUebergebeneGene motherDominant) (randomUebergebeneGene fatherDominant)))]
+      )
+      (display (show-butterfly (car childAttributs) (cadr childAttributs) (caddr childAttributs) (cadddr childAttributs))))
+  )
+
+(define (zeichneKinder motherDominant fatherDominant children)
+  (createChild motherDominant fatherDominant)
+  (if
+   (> children 1)
+   (zeichneKinder motherDominant fatherDominant (sub1 children))
+   (display "\n")
+  )
+)
+
+; Form:(zeichneKinder (list 'red 'star 'curly 'ellipse )(list 'red 'star 'curly 'ellipse ) 2 )

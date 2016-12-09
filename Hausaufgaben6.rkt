@@ -10,14 +10,21 @@
       '()
       (cons (triangle baseSize "solid" "green") (generateTriangles (- baseSize 5)))))
 
-;;Malt aus einer Liste an Dreiecken einen Tannenbaum
-;;Die Übergebene liste muss mit dem kleinsten Dreieck beginnen
-(define (drawTree triangleList)
-  (if (= (length triangleList) 1)
-      (overlay/offset (car triangleList) 0 10 (rectangle 10 5 "solid" "brown"))
-      (overlay/offset (car triangleList) 0 35 (drawTree (cdr triangleList)))))
+;;Malt abhängig von der baseSize einen Baum
+(define (drawTree baseSize)
+  (let ([treeList (generateTriangles baseSize)])
+    (drawTreeHelp (cdr treeList) (car treeList))))
+
+(define (drawTreeHelp triangles image)
+  (if (null? triangles)
+      image
+      (drawTreeHelp (cdr triangles) (underlay/offset image 0 -35 (car triangles)))))
 
 
-;;Nur ein Test
-(drawTree (reverse(generateTriangles 100)))
+
+;Schneeflocken!!!
+(define (generateSnowflakes size amount)
+  (if (= amount 1)  
+  '()
+  (cons (radial-star 8 8 size "solid" "gray") (generateSnowflakes size (- amount 1)))))
       

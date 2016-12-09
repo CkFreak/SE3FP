@@ -12,7 +12,7 @@
 
 ;;Malt aus einer Liste an Dreiecken einen Tannenbaum
 (define (drawTree triangleList)
-  (if (= (length triangleList) 2)
-      (overlay/offset (car triangleList) 0 10 (cadr triangleList))
+  (if (= (length triangleList) 1)
+      (overlay/offset (car triangleList) 0 2 (rectangle 10 5 "solid" "brown"))
       (overlay/offset (car triangleList) 0 10 (drawTree (cdr triangleList)))))
       

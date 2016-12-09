@@ -13,7 +13,7 @@
 ;;Malt abhängig von der baseSize einen Baum
 (define (drawTree baseSize)
   (let ([treeList (generateTriangles baseSize)])
-    (drawTreeHelp (cdr treeList) (car treeList))))
+    (drawTreeHelp treeList (rectangle 20 40 "solid" "brown"))))
 
 (define (drawTreeHelp triangles image)
   (if (null? triangles)

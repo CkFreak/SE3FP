@@ -11,6 +11,7 @@
       (cons (triangle baseSize "solid" "green") (generateTriangles (- baseSize 5)))))
 
 ;;Malt aus einer Liste an Dreiecken einen Tannenbaum
+;;Die Übergebene liste muss mit dem kleinsten Dreieck beginnen
 (define (drawTree triangleList)
   (if (= (length triangleList) 1)
       (overlay/offset (car triangleList) 0 10 (rectangle 10 5 "solid" "brown"))

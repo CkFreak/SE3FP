@@ -1,38 +1,14 @@
 #lang racket
-#|
-#|Hausaufgaben Blatt 06|#
-(require 2htdp/image)
-
-#|Aufgabe 2 Nikolausaufgabe|#
-
-;;Generiert eine Liste aus Dreiecken, die mit jedem Dreieck um 1 in der Länge reduziert werden.
-(define (generateTriangles baseSize)
-  (if (< baseSize 10)
-      '()
-      (cons (triangle baseSize "solid" "green") (generateTriangles (- baseSize 5)))))
-
-;;Malt abhängig von der baseSize einen Baum
-(define (drawTree baseSize)
-  (let ([treeList (generateTriangles baseSize)])
-    (drawTreeHelp treeList (rectangle 20 40 "solid" "brown"))))
-
-(define (drawTreeHelp triangles image)
-  (if (null? triangles)
-      image
-      (drawTreeHelp (cdr triangles) (underlay/offset image 0 -35 (car triangles)))))
-
-
-
-;Schneeflocken!!!
-(define (generateSnowflakes size amount)
-  (if (= amount 1)  
-  '()
-  (cons (radial-star 8 8 size "solid" "gray") (generateSnowflakes size (- amount 1)))))
-|#
+#|Hausaufgaben Blatt 06 Blaesch Ramburger Ney|#
+; +++ NOTIZ AN GRUPPENMITGLIEDER: Diesen Kram hab ich heute mit Julian (Informatiker)
+; zusammen gemacht. Ist auch noch  nicht ganz fertig haha. Falls wir das abgeben
+;SOLLTEN, können wir theoretisch sagen, dass unsere beiden Gruppen das zsm gemacht
+;haben. es gibt hier ja theoretisch kein richtig oder falsch, wir sollen ja kreativ sein :P
 (require 2htdp/image)
 (require 2htdp/universe)
 (require lang/posn)
 
+;Schneeflocken noch ziemlich behindert, kann man viel eleganter lösen
 (define (schnee t)
   (underlay/xy
    (underlay/xy
@@ -97,6 +73,7 @@
    )
   )
 
+;Erstellt eine Baumkrone
 (define (baumKrone groesse)
   (if (> groesse 0)
       (underlay/offset
@@ -108,6 +85,8 @@
             )
   )
   )
+
+;Zeichnet Baum aus Krone und Stamm
 (define (zeichneBaum size)
     (above
      (baumKrone size)
@@ -123,11 +102,13 @@
       (square 0 "solid" "brown")
       ))
 
-
+;kleine Nebenfunktion, damit der Wald aufhört zu blinken haha
 (define waldFix
   (wald 500)
   )
 
+;Unnötig komplizierter Bau von Rentieren, da erstellt, bevor wir die Polygone entdeckt haben -.-
+;Achja, die Dinger haben noch kein Geweih
 (define (rentier t special)
      (underlay/xy
       (underlay/xy
@@ -184,6 +165,7 @@
       )
   )
 
+;Schlitten mit Polygonen wesentlich übersichtlicher
 (define schlitten
   (underlay/xy
 
@@ -207,6 +189,8 @@
   )
   )
 
+;Den Ursprung hatte der Weihnachtsmann-Schlitten in der Ufo-Funktion,
+;deswegen noch die Namensgebung
 (define (myUfoBeam t)
   (underlay/xy
 
@@ -241,6 +225,7 @@
    )
   )
 
+;Blinkende Geschenke (mitSchleife <3) die Santa über nem Wald abwirft
 (define (geschenk t) ;der Parameter t wird benötigt, um die Geschenke jedes mal neu zu generieren, sonst sind sie einfarbig
   (let ((sizeX (random 5 9)) (sizeY (random 5 9)) (color (list-ref '("blue" "green" "yellow" "red") (random 4))))
     (underlay/align "center"
@@ -257,6 +242,8 @@
   (rectangle 5 5 "solid" (list-ref '("blue" "green" "yellow" "red") (random 4)))
   )
 
+;Auslagerung des Hintergrundbildes, der Übersichtlichkeit halber; und süäter hoffentlich
+;noch für bessere Schneeflocken
 (define (himmel t)
   (underlay/xy
                   (rectangle 550 200 "solid" "darkblue")
@@ -265,6 +252,7 @@
                   )
   )
 
+;Funktion die das ganze zusammenbaut, bennen ich später auch nochmal um
 (define (create-UFO-scene t)
     (underlay/xy (underlay/xy
                   (himmel t)

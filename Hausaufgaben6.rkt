@@ -6,6 +6,9 @@
 (require lang/posn)
 
 ;Schneeflocken, die ebenfalls den Zeitparameter übergeben bekommen und dementsprechend blinken
+;Auch bei den Schneeflocken sind wir ähnlich vorgegangen wie bei den Geschenken haben sie zufällig,
+;aber in Abhängigkeit einer "MainSchneeflocke" erstellt. Führt leider zu einer ungleichmäßigen Verteilung,
+;aber für was anderes hat die Zeit nicht mehr gereicht.
 (define (schnee t)
   (underlay/xy
    (underlay/xy
@@ -101,7 +104,7 @@
 
 ;kleine Nebenfunktion, damit der Wald aufhört zu blinken :) (lag ebenfalls am Zeitparameter)
 (define waldFix
-  (wald 500)
+  (wald 550)
   )
 
 ;Komplizierter Bau von Rentieren, da erstellt, bevor wir die Polygone entdeckt haben.
@@ -165,7 +168,6 @@
 ;Schlitten (in Polygonen) wesentlich übersichtlicher
 (define schlitten
   (underlay/xy
-
    (polygon
     (list (make-posn -5 0)
           (make-posn 10 0)
@@ -200,7 +202,7 @@
          )
         )
        )
-   (+ 30 (random 10)) (modulo t 120) ;Der Geschenkeabwurf entseht zufällig um ein bestimmtes "MainGeschenk" herum, in einm Abstand von 10 Pixeln,
+   (+ 30 (random 10)) (modulo t 120) ;Der Geschenkeabwurf entseht zufällig um ein bestimmtes "MainGeschenk" herum, in einem Abstand von  max. 10 Pixeln,
     (underlay/xy                     ;damit kein Muster zu erkennen ist und es nach einer großen zufälligen Geschenkewolke aussieht.
      (underlay/xy
       (geschenk t)
@@ -220,7 +222,7 @@
 
 ;Blinkende Geschenke (mitSchleife) die Santa über nem Wald abwirft
 (define (geschenk t) ;der Parameter t wird benötigt, um die Geschenke jedes mal neu zu generieren, sonst sind sie einfarbig
-  (let ((sizeX (random 5 9)) (sizeY (random 5 9)) (color (list-ref '("blue" "green" "yellow" "red") (random 4))))
+  (let ((sizeX (random 5 9)) (sizeY (random 5 9)) (color (list-ref '("blue" "green" "yellow" "red") (random 4)))) ;Geschenke haben zufällige Größe und Farbe
     (underlay/align "center"
                     "center"
                     (rectangle sizeX sizeY "solid" (list-ref '("blue" "green" "yellow" "red") (random 4)))
@@ -229,10 +231,6 @@
                     )
                   )
 )
-
-(define (geschenk_simple t)
-  (rectangle 5 5 "solid" (list-ref '("blue" "green" "yellow" "red") (random 4)))
-  )
 
 ;Auslagerung des Hintergrundbildes, der Übersichtlichkeit halber; wird ebenfalls nach dem time Variablen immer neu gezeichnet,
 ;da Santa sonst aus dem Himmel flog

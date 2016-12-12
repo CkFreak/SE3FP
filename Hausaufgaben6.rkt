@@ -1,6 +1,6 @@
 #lang racket
 #|Hausaufgaben Blatt 06 Blaesch Ramburger Ney|#
-;Diese Arbeit entstand in einer Zusammenarbeit mit der Gruppe von Julian Goettma (@Timbo vllt sollten wir ihr das eifach so sagen, da ich die Namen der andern nicht kenne)
+
 (require 2htdp/image)
 (require 2htdp/universe)
 (require lang/posn)
@@ -184,11 +184,9 @@
    )
   )
 
-;Den Ursprung hatte der Weihnachtsmann-Schlitten in der Ufo-Funktion,
-;deswegen noch die Namensgebung
+;Diese Funktion haben wir ursprünglich vom Ufo-Beam abgeleitet.
 (define (geschenkeAbwurf t)
   (underlay/xy
-
    (underlay/xy
        schlitten
        80 0
@@ -202,8 +200,8 @@
          )
         )
        )
-   (+ 30 (random 10)) (modulo t 120)
-    (underlay/xy
+   (+ 30 (random 10)) (modulo t 120) ;Der Geschenkeabwurf entseht zufällig um ein bestimmtes "MainGeschenk" herum, in einm Abstand von 10 Pixeln,
+    (underlay/xy                     ;damit kein Muster zu erkennen ist und es nach einer großen zufälligen Geschenkewolke aussieht.
      (underlay/xy
       (geschenk t)
       (random 10) (random 10)
@@ -220,12 +218,11 @@
    )
   )
 
-;Blinkende Geschenke (mitSchleife <3) die Santa über nem Wald abwirft
+;Blinkende Geschenke (mitSchleife) die Santa über nem Wald abwirft
 (define (geschenk t) ;der Parameter t wird benötigt, um die Geschenke jedes mal neu zu generieren, sonst sind sie einfarbig
   (let ((sizeX (random 5 9)) (sizeY (random 5 9)) (color (list-ref '("blue" "green" "yellow" "red") (random 4))))
     (underlay/align "center"
                     "center"
-                    ;(wald 500)
                     (rectangle sizeX sizeY "solid" (list-ref '("blue" "green" "yellow" "red") (random 4)))
                     (rectangle sizeX 1 "solid" color)
                     (rectangle 1 sizeY "solid" color)
@@ -237,8 +234,8 @@
   (rectangle 5 5 "solid" (list-ref '("blue" "green" "yellow" "red") (random 4)))
   )
 
-;Auslagerung des Hintergrundbildes, der Übersichtlichkeit halber; und süäter hoffentlich
-;noch für bessere Schneeflocken
+;Auslagerung des Hintergrundbildes, der Übersichtlichkeit halber; wird ebenfalls nach dem time Variablen immer neu gezeichnet,
+;da Santa sonst aus dem Himmel flog
 (define (himmel t)
   (underlay/xy
                   (rectangle 550 200 "solid" "darkblue")
@@ -247,7 +244,7 @@
                   )
   )
 
-;Ihren Ursprung hatte die Funktion in der Ufo-Szene, die auf dem Aufgabenblatt aufgeschrieben war
+;Ihren Ursprung hatte die Funktion in der Ufo-Szene, die auf dem Aufgabenblatt aufgeschrieben war.
 (define (create-Santa-scene t)
     (underlay/xy (underlay/xy
                   (himmel t)

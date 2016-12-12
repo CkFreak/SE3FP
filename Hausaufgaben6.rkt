@@ -4,7 +4,28 @@
 (require 2htdp/image)
 (require 2htdp/universe)
 (require lang/posn)
+#|Aufgabe 1 Formen der Rekursion|#
+#|
+kopfstueck ist eine lineare Rekursion, weil in jedem "Zweig" des Aufrufs nur höchstens einmal kopfstueck wieder aufgerufen wird. Außerdem ist die Rekurson hier direkt, da sich kopfstueck selber aufruft.
 
+Das selbe gilt für die Funktion endstueck. Auch sie ist linear und direkt, da sie sich selber aufruft und auch nur einmal in einem "Zweig" der Rekursion
+
+Bei merge handelt es sich um eine Baum-Rekursion, da es sich in den letzten beiden Zeilen häufen wird, wie oft merge rekursiv aufgerufen wird. Auch merge ist eine direkte Rekursion durch den direkten Selbstaufruf
+
+Merge-sort ist eine geschachtelte Rekursion sowie eine Baum-Rekursion und eine indirekte Rekursion. Geschachtelt, weil merge-sort in den letzten beiden Zeilen mehrfach sich selbst aufruft, innerhalb anderer Rekursionen.
+Baum-Rekursion, weil merge-sort genau wie sort sich mehrfach selbst aufruft und so die Anzahl der Rekursiven aufrufe schell erhöht.
+Indirekte Rekursion, weil nicht nur merge-sort aufgerufen wird sondern auch kopfstuekc, endstueck und merge. Alles rekurisve Funktionen, die für viele weitere Rekursive Aufrufe sorgen
+
+|#
+
+
+
+
+
+
+
+
+#|Aufgabe 2 Nikolausaufgabe|#
 ;Schneeflocken, die ebenfalls den Zeitparameter übergeben bekommen und dementsprechend blinken
 ;Auch bei den Schneeflocken sind wir ähnlich vorgegangen wie bei den Geschenken haben sie zufällig,
 ;aber in Abhängigkeit einer "MainSchneeflocke" erstellt. Führt leider zu einer ungleichmäßigen Verteilung,

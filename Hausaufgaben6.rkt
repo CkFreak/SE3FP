@@ -167,6 +167,8 @@
 
 ;Schlitten (in Polygonen) wesentlich übersichtlicher
 (define schlitten
+  (underlay/xy (above (circle 7 "solid" "pink")
+         (triangle 20 "solid" "red")) -30 15
   (underlay/xy
    (polygon
     (list (make-posn -5 0)
@@ -184,6 +186,7 @@
     (rotate -30 (rectangle 5 10 "solid" "black"))
     )
    )
+  )
   )
 
 ;Diese Funktion haben wir ursprünglich vom Ufo-Beam abgeleitet.

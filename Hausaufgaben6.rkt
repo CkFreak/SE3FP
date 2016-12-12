@@ -1,14 +1,11 @@
 #lang racket
 #|Hausaufgaben Blatt 06 Blaesch Ramburger Ney|#
-; +++ NOTIZ AN GRUPPENMITGLIEDER: Diesen Kram hab ich heute mit Julian (Informatiker)
-; zusammen gemacht. Ist auch noch  nicht ganz fertig haha. Falls wir das abgeben
-;SOLLTEN, können wir theoretisch sagen, dass unsere beiden Gruppen das zsm gemacht
-;haben. es gibt hier ja theoretisch kein richtig oder falsch, wir sollen ja kreativ sein :P
+;Diese Arbeit entstand in einer Zusammenarbeit mit der Gruppe von Julian Goettma (@Timbo vllt sollten wir ihr das eifach so sagen, da ich die Namen der andern nicht kenne)
 (require 2htdp/image)
 (require 2htdp/universe)
 (require lang/posn)
 
-;Schneeflocken noch ziemlich behindert, kann man viel eleganter lösen
+;Schneeflocken, die ebenfalls den Zeitparameter übergeben bekommen und dementsprechend blinken
 (define (schnee t)
   (underlay/xy
    (underlay/xy
@@ -86,7 +83,7 @@
   )
   )
 
-;Zeichnet Baum aus Krone und Stamm
+;Zeichnet einen Baum aus Krone und Stamm
 (define (zeichneBaum size)
     (above
      (baumKrone size)
@@ -102,13 +99,13 @@
       (square 0 "solid" "brown")
       ))
 
-;kleine Nebenfunktion, damit der Wald aufhört zu blinken haha
+;kleine Nebenfunktion, damit der Wald aufhört zu blinken :) (lag ebenfalls am Zeitparameter)
 (define waldFix
   (wald 500)
   )
 
-;Unnötig komplizierter Bau von Rentieren, da erstellt, bevor wir die Polygone entdeckt haben -.-
-;Achja, die Dinger haben noch kein Geweih
+;Komplizierter Bau von Rentieren, da erstellt, bevor wir die Polygone entdeckt haben.
+;Leider ohne Geweih.
 (define (rentier t special)
      (underlay/xy
       (underlay/xy
@@ -165,7 +162,7 @@
       )
   )
 
-;Schlitten mit Polygonen wesentlich übersichtlicher
+;Schlitten (in Polygonen) wesentlich übersichtlicher
 (define schlitten
   (underlay/xy
 
@@ -178,20 +175,18 @@
           (make-posn 0 30)
           )
     "solid" "peru")
-  
-  ;(rectangle 60 30 "solid" "peru")
-  -5 23
-  (underlay/xy
-   (rectangle 75 5 "solid" "black")
-   70 -6
-   (rotate -30 (rectangle 5 10 "solid" "black"))
+   -5 23
+   (underlay/xy
+    (rectangle 75 5 "solid" "black")
+    70 -6
+    (rotate -30 (rectangle 5 10 "solid" "black"))
+    )
    )
-  )
   )
 
 ;Den Ursprung hatte der Weihnachtsmann-Schlitten in der Ufo-Funktion,
 ;deswegen noch die Namensgebung
-(define (myUfoBeam t)
+(define (geschenkeAbwurf t)
   (underlay/xy
 
    (underlay/xy
@@ -252,16 +247,16 @@
                   )
   )
 
-;Funktion die das ganze zusammenbaut, bennen ich später auch nochmal um
-(define (create-UFO-scene t)
+;Ihren Ursprung hatte die Funktion in der Ufo-Szene, die auf dem Aufgabenblatt aufgeschrieben war
+(define (create-Santa-scene t)
     (underlay/xy (underlay/xy
                   (himmel t)
                   0 139
                   waldFix
                   )
                  (modulo t 500) (* (modulo t 500) 0.12)
-                 (myUfoBeam t)
+                 (geschenkeAbwurf t)
                  )
   )
-;(wald 500)
-(animate create-UFO-scene)
+
+(animate create-Santa-scene)

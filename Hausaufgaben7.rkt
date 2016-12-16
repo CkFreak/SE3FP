@@ -12,3 +12,6 @@
   (if (null? n)
       (reverse el)
       (produktEndRekursiv (cdr n) f (cons (* (car n) f) el))))
+
+(define (produktHigh n f)
+  (map ((curry *) f) n))

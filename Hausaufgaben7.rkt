@@ -116,20 +116,30 @@
         [(= (floor (/ t 28)) 8) (drawSegment 8)]
         [(= (floor (/ t 28)) 9) (drawSegment 9)])))
 
-(animate zeige-7segment)
+;;Animiert die Sekundenanzeige
+;(animate zeige-7segment)
 
 ;;Aufgabe 2.4
-(define (drawFullClock)
-  (overlay/align/offset "right" "middle" (drawSegment 0)
-                        640 0
-  (overlay/align/offset "right" "middle" (drawSegment 0)
+
+;;Zeichnet sechs nebeneinander liegende Segmente
+;;Getrennt sind die Segemente nach jedem zweite um ein kleines bisschen mehr
+(define (drawFullClock t)
+  (overlay/align/offset "right" "middle" (drawSegment (modulo (quotient t 86400) 2)) ;;zehner Stunden Segment
                         535 0
-  (overlay/align/offset "right" "middle" (drawSegment 0)
+  (overlay/align/offset "right" "middle" (drawSegment (modulo (quotient t 3600) 10)) ;;einzel Stunden Segment
                         425 0
-  (overlay/align/offset "right" "middle" (drawSegment 0)
+  (overlay/align/offset "right" "middle" (drawSegment (modulo (quotient t 16800) 6)) ;; zehner Minunten Segment
                         320 0
-  (overlay/align/offset "right" "middle" (drawSegment 0)
+  (overlay/align/offset "right" "middle" (drawSegment (modulo (quotient t 60) 10)) ;;einzel Minuten Segment
                         210 0
-  (overlay/align/offset "right" "middle" (drawSegment 0)
+  (overlay/align/offset "right" "middle" (drawSegment (modulo (quotient t 10) 6)) ;;Zehner Sekunden Segment
                         105 0
-                  (drawSegment 0))))))))
+                  (drawSegment (modulo t 10))))))));;einzel Sekunden Segment
+
+;;Passt t an eine für drawFullClock verwendbare Form an
+(define (zeige-dauer t)
+  (let ([t (* (quotient t 28) 60)])
+  (drawFullClock t)))
+
+;;Animiert die gesammte Uhr
+(animate zeige-dauer)

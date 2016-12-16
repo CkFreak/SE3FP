@@ -117,3 +117,19 @@
         [(= (floor (/ t 28)) 9) (drawSegment 9)])))
 
 (animate zeige-7segment)
+
+;;Aufgabe 2.4
+(define (drawFullClock)
+  (overlay/align/offset "right" "middle" (drawSegment 0)
+                        640 0
+  (overlay/align/offset "right" "middle" (drawSegment 0)
+                        535 0
+  (overlay/align/offset "right" "middle" (drawSegment 0)
+                        425 0
+  (overlay/align/offset "right" "middle" (drawSegment 0)
+                        320 0
+  (overlay/align/offset "right" "middle" (drawSegment 0)
+                        210 0
+  (overlay/align/offset "right" "middle" (drawSegment 0)
+                        105 0
+                  (drawSegment 0))))))))

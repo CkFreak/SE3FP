@@ -1,5 +1,6 @@
 #lang racket
 (require 2htdp/image)
+(require 2htdp/universe)
 
 #|Aufgabe 1 Produktberechnung mit drei verschienenen Methoden|#
 ;;Errechnet das Produkt allgemein Rekursiv
@@ -30,7 +31,7 @@
 ;;es wird von links nach rechts durchnummeriert
 
 ;obenMitte, linksOben, rechtsOben, mitteMitte, linksUnten, rechtsUnten, mitteUnten
-(define anzeigeCodes'((0 0 0 0 0 0 0) ;;0
+(define anzeigeCodes'((1 1 1 0 1 1 1) ;;0
                        (0 0 1 0 0 1 0) ;;1
                        (1 0 1 1 1 0 1) ;;2
                        (1 0 1 1 0 1 1) ;;3
@@ -55,6 +56,7 @@
          [(= number 9) (tenth anzeigeCodes)]
           ))
 
+;;Zeichnet ein Segment mit der eingegeben Zahl
 (define (drawSegment number)
   (let ([xs (getNumberFromList number)])
     (drawSegmentHilf (list-ref xs 0) (list-ref xs 1) (list-ref xs 2) (list-ref xs 3) (list-ref xs 4) (list-ref xs 5) (list-ref xs 6))))
@@ -98,3 +100,20 @@
   (if (= color 1)
       (rectangle 10 80 "solid" "Red")
       (rectangle 10 80 "solid" "DimGray")))
+
+;;;Aufgabe 2.3
+
+(define (zeige-7segment t)
+  (let ([t (modulo t 280)]) 
+  (cond [(= (floor (/ t 28)) 0) (drawSegment 0)]
+        [(= (floor (/ t 28)) 1) (drawSegment 1)]
+        [(= (floor (/ t 28)) 2) (drawSegment 2)]
+        [(= (floor (/ t 28)) 3) (drawSegment 3)]
+        [(= (floor (/ t 28)) 4) (drawSegment 4)]
+        [(= (floor (/ t 28)) 5) (drawSegment 5)]
+        [(= (floor (/ t 28)) 6) (drawSegment 6)]
+        [(= (floor (/ t 28)) 7) (drawSegment 7)]
+        [(= (floor (/ t 28)) 8) (drawSegment 8)]
+        [(= (floor (/ t 28)) 9) (drawSegment 9)])))
+
+(animate zeige-7segment)

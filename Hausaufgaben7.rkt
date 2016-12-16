@@ -29,6 +29,7 @@
 ;; der oberere Querbalken ist position 0 und der untere querbalken position 6
 ;;es wird von links nach rechts durchnummeriert
 
+;obenMitte, linksOben, rechtsOben, mitteMitte, linksUnten, rechtsUnten, mitteUnten
 (define anzeigeCodes'((0 0 0 0 0 0 0) ;;0
                        (0 0 1 0 0 1 0) ;;1
                        (1 0 1 1 1 0 1) ;;2
@@ -41,7 +42,7 @@
                        (1 1 1 1 0 1 1) ;;9
                        ))
 
-(define (drawSegment)
+(define (drawSegment a b c d e f g)
   (overlay/align/offset "left" "top"
                         (drawHorizontalSegment 0)
                         0

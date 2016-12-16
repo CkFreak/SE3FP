@@ -42,11 +42,29 @@
                        ))
 
 (define (drawSegment)
+  (overlay/align/offset "left" "top"
+                        (drawHorizontalSegment 0)
+                        0
+                        -12
+  (overlay/align/offset "left" "bottom"
+                        (drawHorizontalSegment 0)
+                        0
+                        12
+  (overlay/align/offset "right" "top"
+                        (drawHorizontalSegment 1)
+                        0
+                        -12
+  (overlay/align/offset "right" "bottom"
+                        (drawHorizontalSegment 1)
+                        0
+                        12
+  (overlay/align "middle" "bottom"
+                 (drawVerticalSegment 1)
   (overlay/align "middle" "top"
                  (drawVerticalSegment 1)
   (overlay/align "middle" "middle"
                (drawVerticalSegment 1)
-               (rectangle 100 200 "solid" "black"))))
+               (rectangle 100 200 "solid" "black")))))))))
 
 ;;0 für grau 1 für Rot
 (define (drawVerticalSegment color)

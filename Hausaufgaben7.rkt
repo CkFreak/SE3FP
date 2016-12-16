@@ -41,7 +41,7 @@
                        (1 1 1 1 1 1 1) ;;8
                        (1 1 1 1 0 1 1) ;;9
                        ))
-
+;;Holt die definition der Zahl aus der anzeigeCodes Liste
 (define (getNumberFromList number)
   (cond [(= number 0) (first anzeigeCodes)]
          [(= number 1) (second anzeigeCodes)]
@@ -54,10 +54,15 @@
          [(= number 8) (ninth anzeigeCodes)]
          [(= number 9) (tenth anzeigeCodes)]
           ))
+
+(define (drawSegment number)
+  (let ([xs (getNumberFromList number)])
+    (drawSegmentHilf (list-ref xs 0) (list-ref xs 1) (list-ref xs 2) (list-ref xs 3) (list-ref xs 4) (list-ref xs 5) (list-ref xs 6))))
+  
   
 ;;Zeichnet das Segment nach den Angaben in den Variablen.
 ;;Die Variablen entsprechen der selben reihenfoge wie in der Liste oben
-(define (drawSegment a b c d e f g)
+(define (drawSegmentHilf a b c d e f g)
   (overlay/align/offset "left" "top"
                         (drawHorizontalSegment b)
                         0

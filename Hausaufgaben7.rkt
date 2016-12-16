@@ -138,7 +138,7 @@
 
 ;;Passt t an eine für drawFullClock verwendbare Form an
 (define (zeige-dauer t)
-  (let ([t (* (quotient t 28) 3600)])
+  (let ([t (quotient t 28)])
   (drawFullClock t)))
 
 ;;Animiert die gesammte Uhr

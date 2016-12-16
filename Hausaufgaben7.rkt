@@ -124,11 +124,11 @@
 ;;Zeichnet sechs nebeneinander liegende Segmente
 ;;Getrennt sind die Segemente nach jedem zweite um ein kleines bisschen mehr
 (define (drawFullClock t)
-  (overlay/align/offset "right" "middle" (drawSegment (modulo (quotient t 86400) 2)) ;;zehner Stunden Segment
+  (overlay/align/offset "right" "middle" (drawSegment (modulo (quotient t 36000) 3)) ;;zehner Stunden Segment
                         535 0
   (overlay/align/offset "right" "middle" (drawSegment (modulo (quotient t 3600) 10)) ;;einzel Stunden Segment
                         425 0
-  (overlay/align/offset "right" "middle" (drawSegment (modulo (quotient t 16800) 6)) ;; zehner Minunten Segment
+  (overlay/align/offset "right" "middle" (drawSegment (modulo (quotient t 600) 6)) ;; zehner Minunten Segment
                         320 0
   (overlay/align/offset "right" "middle" (drawSegment (modulo (quotient t 60) 10)) ;;einzel Minuten Segment
                         210 0
@@ -138,7 +138,7 @@
 
 ;;Passt t an eine für drawFullClock verwendbare Form an
 (define (zeige-dauer t)
-  (let ([t (* (quotient t 28) 60)])
+  (let ([t (* (quotient t 28) 3600)])
   (drawFullClock t)))
 
 ;;Animiert die gesammte Uhr

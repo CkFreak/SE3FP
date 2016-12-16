@@ -42,6 +42,21 @@
                        (1 1 1 1 0 1 1) ;;9
                        ))
 
+(define (getNumberFromList number)
+  (cond [(= number 0) (first anzeigeCodes)]
+         [(= number 1) (second anzeigeCodes)]
+         [(= number 2) (third anzeigeCodes)]
+         [(= number 3) (fourth anzeigeCodes)]
+         [(= number 4) (fifth anzeigeCodes)]
+         [(= number 5) (sixth anzeigeCodes)]
+         [(= number 6) (seventh anzeigeCodes)]
+         [(= number 7) (eighth anzeigeCodes)]
+         [(= number 8) (ninth anzeigeCodes)]
+         [(= number 9) (tenth anzeigeCodes)]
+          ))
+  
+;;Zeichnet das Segment nach den Angaben in den Variablen.
+;;Die Variablen entsprechen der selben reihenfoge wie in der Liste oben
 (define (drawSegment a b c d e f g)
   (overlay/align/offset "left" "top"
                         (drawHorizontalSegment b)
@@ -73,7 +88,7 @@
       (rectangle 80 10 "solid" "Red")
       (rectangle 80 10 "solid" "DimGray")))
 
-;;
+;;0 für graun 1 für rot
 (define (drawHorizontalSegment color)
   (if (= color 1)
       (rectangle 10 80 "solid" "Red")

@@ -23,4 +23,7 @@ da f als Varibale übergeben wird. Die Ausgabe hängt von der Übergebenen Funkt
 Aufgabe 1.3
 
 ICH HABE LEIDER KEINEN PLAN, WAS DIE HIER WOLLEN!!!!
+
+Aufgabe 1.4
+(foldl (curry * 3) 1 '(1 2 3)) -> 
 |#

@@ -84,3 +84,7 @@ In der zweiten Umgebung binden wir dann den Wert 3 an die Closure werten sie aus
 ;Filtern aller Elemente aus einer Liste, die größer als 3 sind und gerade sind.
 (define (geradeGroeßer3 xs)
        (filter even? (filter (curry < 3) xs)))
+       
+;Teilt eine Liste in eine Liste mit geraden Elemnten und einer Liste mit ungeraden Elementen.
+(define (ungeradeGerade xs)
+        (partition even? xs))

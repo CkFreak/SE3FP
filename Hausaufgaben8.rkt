@@ -70,3 +70,17 @@ In der zweiten Umgebung binden wir dann den Wert 3 an die Closure werten sie aus
  (32 steht in der Gleichung links).
  ((/ (- 32 9941) 1.8) (/ (- 32 212) 1.8) (/ (- 32 32) 1.8) (/ (- 32 -459.67) 1.8) 
 |#
+
+;Aufgabe 2.)
+
+;Erzeugen einer neuen Liste mit den absoluten Beträgen.
+(define (absolut xs)
+       (map abs xs))
+
+;Filtern aller Elemente aus einer Liste, die durch 13 teilbar sind.
+(define (durchDreiZehn xs)
+       (filter (compose zero? (curryr modulo 13)) xs))
+
+;Filtern aller Elemente aus einer Liste, die größer als 3 sind und gerade sind.
+(define (geradeGroeßer3 xs)
+       (filter even? (filter (curry < 3) xs)))

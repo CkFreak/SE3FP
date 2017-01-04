@@ -22,8 +22,51 @@ da f als Varibale übergeben wird. Die Ausgabe hängt von der Übergebenen Funkt
 
 Aufgabe 1.3
 
-ICH HABE LEIDER KEINEN PLAN, WAS DIE HIER WOLLEN!!!!
+Die Funktion "masala" hat zwei Umgebungen. Die erste Umgebung ist der
+Funktionsaufruf:(masala / 1). Die zweite Umgebung verwendet die Funktion, welche wir aus
+(masala / 1) erhalten mit der 3, also (procedure 3).
+In der ersten Umgebung binden wir die Funktion / und den Wert 1 und erzeugen dadurch ein closure.
+In der zweiten Umgebung binden wir dann den Wert 3 an die Closure werten sie aus.
+|#
 
-Aufgabe 1.4
-(foldl (curry * 3) 1 '(1 2 3)) -> 
+;4.)
+(define (flip f)
+(lambda (x y) (f y x)))
+
+(foldl (curry * 3) 1 '(1 2 3))
+#|-->162
+ Wir erzeugen eine Funktion die jeden Wert * 3 nimmt, zudem haben wir die Startwert 1 und die Liste '(1 2 3).
+ Wir rechnen also als erstes:
+ (curry * 3) 1 1 , also 3*1*1 --> 3
+ Dann:
+ (curry * 3) 3 2 , also 3*3*2 --> 18
+ und zu letzt:
+ (curry * 3) 18 3, also 3*18*3 --> 162
+|#
+
+(map (flip cons) '(1 2 3) '(3 2 1))
+#|-->'((3 . 1) (2 . 2) (1 . 3))
+ Die Funktion map nutzt unsere Funktion (flip cons) auf die beiden Listen an und erstellt dann eine Liste davon.
+ Da (lambda (x y) (f y x)) in unserer flip Funktion gilt nehmen wir immer erst das n-te Element aus der zweiten Liste,
+ und verbinden es dann durch cons mit dem n-ten Element aus der ersten Liste zu einem pair, so erhalten wir:
+(3 . 1) -> (3 . 1) (2 . 2) -> (3 . 1) (2 . 2) (1 . 3)
+|#
+
+(filter list? '((a b) () 1 (())))
+#|Die Funktion filter gibt alle Elemente aus einer Liste zurück für die unsere Bedingung, in unserem Fall list?, gilt.
+ (list? (a b)) -> #t
+ (list? ()) -> #t
+ (list? 1 -> #f
+ (list? (())) -> #t
+ Wir erhalten also alle Listen aus unserer Anfangsliste: '((a b) () (()))
+ 
+|#
+(map (compose (curryr / 1.8) (curry - 32))
+ '(9941 212 32 -459.67 ))
+#|--> '(-5505.0 -100.0 0 273.15)
+ Die Funktion map beschreibt das wir auf jedes Element aus der Liste unsere Funktion (compose (curryr / 1.8) (curry - 32) anwenden.
+ Durch compose beschreiben wir die Reihenfolge (Von rechts nach links), also subtrahieren wir erst, dann dividieren wir.
+ Durch Curryr beschreiben wir, dass wir durch 1.8 dividieren(1.8 steh in der Gleichung rechts) und durch curry das wir von 32 subtrahieren
+ (32 steht in der Gleichung links).
+ ((/ (- 32 9941) 1.8) (/ (- 32 212) 1.8) (/ (- 32 32) 1.8) (/ (- 32 -459.67) 1.8) 
 |#

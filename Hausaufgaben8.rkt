@@ -88,3 +88,30 @@ In der zweiten Umgebung binden wir dann den Wert 3 an die Closure werten sie aus
 ;Teilt eine Liste in eine Liste mit geraden Elemnten und einer Liste mit ungeraden Elementen.
 (define (ungeradeGerade xs)
         (partition even? xs))
+        
+        
+;Aufgabe 3.1)
+
+;Die verschiedenen Eigenschaften der Karten in einzelnden Listen.
+(define pattern '(waves oval rectangle))
+(define color '(red green blue))
+(define n '(1 2 3))
+(define mode '(outline solid hatched))
+
+;Erzeugen einer Beispielkarte als mit den Eigenschaften als Liste(Anzahl, Form, Füllung, Farbe)
+(define rndmKarte '(waves red 1 outline))
+
+;Aufgabe 3.2)
+
+;Erstelle Kartendeck
+(define erstelleDeck(cartesian-product n pattern mode color))
+
+;Erzeugt die verschiedenen Karten an Hand ihrer Attribute
+(define (erstelleKarte karte)
+   (apply show-set-card karte)
+   )
+
+;Erzeugt alle Karten auf der Konsole
+(define(zeigeKarten)
+   (map erstelleKarte erstelleDeck)
+   )

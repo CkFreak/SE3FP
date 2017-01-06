@@ -115,3 +115,44 @@ In der zweiten Umgebung binden wir dann den Wert 3 an die Closure werten sie aus
 (define(zeigeKarten)
    (map erstelleKarte erstelleDeck)
    )
+
+
+;Aufgabe 3.3)
+
+;Eine Hilfsfunktion um die Drei Karten in Ihren Verschiedenen Eigenschaften zu Sortieren,
+;die Farbe bekommt eine eigene Unterliste, die Form eine usw.
+(define(eigenschaftenListe karte1 karte2 karte3)
+(list(list(first karte1) (first karte2) (first karte3))
+(list(second karte1)(second karte2) (second karte3))
+(list(third karte1) (third karte2) (third karte3))
+(list(fourth karte1) (fourth karte2) (fourth karte3))))
+
+;Hilfsfunktion um in den Unterlisten zu überprüfen ob alle drei Eigenschaften verschieden sind, wenn ja dann #t.
+(define(prüfeVerschiedenheit xs)
+  (eq? #f (check-duplicates xs)))
+
+;Hilfsfunktion um in den Unterlisten zu überprüfen ob alle drei Eigenschaften gleich sind, wenn ja dann #t.
+(define(prüfeGleichheit xs)
+  (eq? 1 (length(remove-duplicates xs ))))
+
+;Hilfsfunktion um beide Kriterien für ein Set für die Karten gilt.
+(define(prüfe xs)
+  (list(prüfeGleichheit xs)(prüfeVerschiedenheit xs)))
+
+;Da keine true? vorhanden, gehen wir über false?.
+(define (countFalse xs)
+  (count false? xs))
+
+;Hauptfunktion zur Überprüfung der Set-Eigenschaften
+;Übergabe der Parameter als Liste mit den drei Karten als Unterlisten
+;(Wir überprüfen für jede der zusammengesetzten Listen der Eigenschaften ob sie Gleich oder komplett verschieden sind
+;und "speichern" sie in einer eigenen Liste mit #t oder #f.
+;Dann zählen wir die false der Eigenschaften in der Liste, ist nur einmal eine 2 dabei, bedeutet dies, dass eine Eigenschaft
+;die Set-Bedingung nicht erfüllt, daher löschen wir die 0 und 1 um anschließend zu prüfen ob die Liste noch eine zwei enthält.)
+(define (is-a-set? karten)
+  (empty? (remove* '(0 1)(map countFalse(map prüfe (eigenschaftenListe(first karten)(second karten)(third karten)))))))
+
+
+;(is-a-set? '((2 red rectangle outline)(2 green rectangle outline)(1 green rectangle solid)))
+
+;(is-a-set? '((2 red oval hatched)(2 red rectangle hatched)(2 red wave hatched)))

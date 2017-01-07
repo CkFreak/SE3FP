@@ -156,3 +156,17 @@ In der zweiten Umgebung binden wir dann den Wert 3 an die Closure werten sie aus
 ;(is-a-set? '((2 red rectangle outline)(2 green rectangle outline)(1 green rectangle solid)))
 
 ;(is-a-set? '((2 red oval hatched)(2 red rectangle hatched)(2 red wave hatched)))
+
+
+;Aufgabe 3.4
+
+;Mische Deck
+(define (mischeDeck)
+  (shuffle erstelleDeck))
+
+;Nehme die letzten 12 Karten
+(define zwölf(list-tail(mischeDeck) 69))
+
+;Zeige die Karten auf der Konsole
+(define(playTime)
+  (map erstelleKarte zwölf))

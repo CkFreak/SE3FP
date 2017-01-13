@@ -12,11 +12,11 @@
   :printer #t)
 
 (defclass* Erscheinungsjahr ()
-  (erscheinungsjahr :accessor erschJ :initvalue :jahr)
+  (erscheinungsjahr :accessor erschJ :initarg :jahr)
   :printer #t)
 
 (defclass Titel ()
-  (titel :accessor tit :initvalue :titel)
+  (titel :accessor tit :initarg :titel)
   :printer #t)
 
 (defclass* Literatur (Schluessel Autor Erscheinungsjahr Titel)

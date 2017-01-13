@@ -4,11 +4,11 @@
 #|Aufgabe 1.1 Definition von Klassen|#
 (defclass* Literatur ()
   (autoren
-   :reader autore
+   :reader autoren
    :initarg :aut
    :type <list>)
   (jahr
-   :reader jah
+   :reader jahr
    :initarg :jr
    :type <string>)
   (titel
@@ -24,18 +24,18 @@
 
 (defclass* Buch (Literatur)
   (verlag
-   :reader verla
+   :reader verlag
    :initarg :verl
    :type <string>)
   
   (verlagsort
-   :reader verlort
+   :reader ort
    :initarg :ort
    :type <string>)
   
   
   (reihe
-   :reader reih
+   :reader reihe
    :initarg :rh
    :type <string>)
   
@@ -81,8 +81,8 @@
   :printer #t)
 
 
-(define Nessie1790 (make Buch
-                         :verl "Minority Report"
+(define Nessie (make Buch
+                         :verl "Minority-Verlag"
                          :aut '("Nessi")
                          :jr "1790"
                          :tl "Mein Leben im Lochness: Verfolgung als Ungeheuer"
@@ -91,26 +91,26 @@
                          :rh "Die Besondere Biographie"
                          :snr "2"))
 
-(define Prefect1979 (make Sammelband
-      :id "Prefect1979"
-      :verl "Galactic Press"
-      :aut '("Prefect, F.")
-      :rh "Travel in Style"
-      :jr "1979"
-      :snr "5"
-      :tl "Mostly harmless - some observations concerning the third planet of the solar sytem"
-      :ort "Vega-System, 3rd planet"
-      :s "420"
-      :hgb "Adams, D., editor, The Hitchhiker's Guide to the Galaxy"))
+(define Prefect (make Sammelband
+                          :id "Prefect1979"
+                          :verl "Galactic Press"
+                          :aut '("Prefect, F.")
+                          :rh "Travel in Style"
+                          :jr "1979"
+                          :snr "5"
+                          :tl "Mostly harmless - some observations concerning the third planet of the solar sytem"
+                          :ort "Vega-System, 3rd planet"
+                          :seiten "500"
+                          :nmeHerausg "Adams, D., editor, The Hitchhiker's Guide to the Galaxy"))
 
-(define Wells3200 (make Zeitschriftenartikel
-      :id "Wells3200"
-      :aut '("Wells, H. G.")
-      :jr "3200"
-      :tl "Zeitmaschinen leicht gemacht"
-      :zt "Heimwerkerpraxis für Anfänger"
-      :hnr "550"
-:bnr "3"))
+(define Wells (make Zeitschriftenartikel
+                        :id "Wells3200"
+                        :aut '("Wells, H. G.")
+                        :jr "3200"
+                        :tl "Zeitmaschinen leicht gemacht"
+                        :zt "Heimwerkerpraxis für Anfänger"
+                        :hnr "550"
+                        :bnr "3"))
 
 
 #|Aufgabe 1.2 Generische Funktionen und Methoden|#
@@ -119,4 +119,24 @@
   :combination generic-append-combination)
 
 (defmethod cite ((li Buch))
-  0)
+  (string-append (car (autoren li))
+                 "("(jahr li) "). "
+                 (titel li) ", Band "
+                 (seriennr li) " aus der Reihe "
+                 (reihe li) ". "
+                 (verlag li) ", "
+                 (ort li)
+                 ))
+
+(defmethod cite ((li Sammelband))
+  (string-append (car (autoren li))
+                 " (" (jahr li) "). "
+                 (titel li) ". In "
+                 (nameHerausgeb li)
+                 "volume " (seriennr li) " of \""
+                 (reihe li) "\"."
+                 (verlag li) ", "
+                 (ort li) ", 1500 edition, p. " (seitenang li)))
+
+(cite Nessie)
+(cite Prefect)

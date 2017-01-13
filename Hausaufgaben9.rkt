@@ -1,7 +1,7 @@
 #lang swindle
 (require swindle/setf
          swindle/misc)
-
+#|Aufgabe 1.1 Definition von Klassen|#
 (defclass* Literatur ()
   (autoren
    :reader autoren
@@ -45,3 +45,11 @@
    :initarg :snr
 :type <string>)
   :printer #t)
+
+#|Aufgabe 1.2 Generische Funktionen und Methoden|#
+
+(defgeneric* cite ((li Literatur))
+  :combination generic-append-combination)
+
+(defmethod cite ((li Buch))
+  0)

@@ -67,7 +67,7 @@
   (nameZeitschrift
    :reader nameZeitsch
    :initarg :nmeZeitschr
-   :type  <string>)
+   :type <string>)
   
   (nummerBand
    :reader nummerB

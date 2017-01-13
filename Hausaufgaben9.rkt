@@ -122,6 +122,7 @@
 
 ;;defgeneric für cite
 (defgeneric* cite ((li Literatur)))
+
 ;;Cite für Bücher
 (defmethod cite ((li Buch))
   (string-append (car (autoren li))
@@ -132,6 +133,7 @@
                  (verlag li) ", "
                  (ort li)
                  ))
+
 ;;Cite für Sammelbänder
 (defmethod cite ((li Sammelband))
   (string-append (car (autoren li))
@@ -142,6 +144,7 @@
                  (reihe li) "\"."
                  (verlag li) ", "
                  (ort li) ", 1500 edition, p. " (seitenang li)))
+
 ;;Cite für Zeitschriftenartikel
 (defmethod cite ((li Zeitschriftenartikel))
   (string-append (car (autoren li)) "(" (jahr li) "). "

@@ -2,14 +2,6 @@
 (require swindle/setf
          swindle/misc)
 
-(defclass* Literatur ()
-  (items
-   :schluessel
-   :autor
-   :erscheinungsjahr
-   :titel )
-  :printer #t)
-
 (defclass* Schluessel ()
   (schluessel :accessor schl :initarg :schlu
               )
@@ -25,4 +17,12 @@
 
 (defclass Titel ()
   (titel :accessor tit :initvalue :titel)
+  :printer #t)
+
+(defclass* Literatur (Schluessel Autor Erscheinungsjahr Titel)
+  (items
+   :schluessel
+   :autor
+   :erscheinungsjahr
+   :titel )
   :printer #t)

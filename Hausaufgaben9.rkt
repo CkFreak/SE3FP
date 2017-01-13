@@ -108,9 +108,9 @@
                         :aut '("Wells, H. G.")
                         :jr "3200"
                         :tl "Zeitmaschinen leicht gemacht"
-                        :zt "Heimwerkerpraxis für Anfänger"
-                        :hnr "550"
-                        :bnr "3"))
+                        :nmeZeitschr "Heimwerkerpraxis für Anfänger"
+                        :nmrHeft "500"
+                        :nmrBa "3"))
 
 
 #|Aufgabe 1.2 Generische Funktionen und Methoden|#
@@ -138,5 +138,14 @@
                  (verlag li) ", "
                  (ort li) ", 1500 edition, p. " (seitenang li)))
 
+(defmethod cite ((li Zeitschriftenartikel))
+  (string-append (car (autoren li)) " ("
+                 (jahr li) "). "
+                 (titel li) ". "
+                 (nameZeitsch li) ", " (nummerHe li)
+                 "(" (nummerB li) ")."))
+
+
 (cite Nessie)
 (cite Prefect)
+(cite Wells)

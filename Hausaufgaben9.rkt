@@ -2,6 +2,8 @@
 (require swindle/setf
          swindle/misc)
 #|Aufgabe 1.1 Definition von Klassen|#
+
+;;Literatur allgemein
 (defclass* Literatur ()
   (autoren
    :reader autoren
@@ -22,6 +24,7 @@
    )
   :printer #t)
 
+;;Buch Literatur 
 (defclass* Buch (Literatur)
   (verlag
    :reader verlag
@@ -46,6 +49,7 @@
    :type <string>)
   :printer #t)
 
+;;Sammelband Literatur
 (defclass* Sammelband (Buch)
   (nameHerausgeber
    :reader nameHerausgeb
@@ -58,6 +62,7 @@
    :type <string>)
   :printer #t)
 
+;;Zeitschriftenartikel Literatur
 (defclass* Zeitschriftenartikel (Literatur)
   (nameZeitschrift
    :reader nameZeitsch
@@ -80,7 +85,7 @@
    :type <string>)
   :printer #t)
 
-
+;;Nessies Autobiographie
 (define Nessie (make Buch
                          :verl "Minority-Verlag"
                          :aut '("Nessi")
@@ -90,7 +95,7 @@
                          :ort "Inverness"
                          :rh "Die Besondere Biographie"
                          :snr "2"))
-
+;;Prefects Sammelband
 (define Prefect (make Sammelband
                           :id "Prefect1979"
                           :verl "Galactic Press"
@@ -102,7 +107,7 @@
                           :ort "Vega-System, 3rd planet"
                           :seiten "500"
                           :nmeHerausg "Adams, D., editor, The Hitchhiker's Guide to the Galaxy"))
-
+;;Wells Zeitschriftenartikel
 (define Wells (make Zeitschriftenartikel
                         :id "Wells3200"
                         :aut '("Wells, H. G.")
@@ -115,9 +120,9 @@
 
 #|Aufgabe 1.2 Generische Funktionen und Methoden|#
 
-(defgeneric* cite ((li Literatur))
-  :combination generic-append-combination)
-
+;;defgeneric für cite
+(defgeneric* cite ((li Literatur)))
+;;Cite für Bücher
 (defmethod cite ((li Buch))
   (string-append (car (autoren li))
                  "("(jahr li) "). "
@@ -127,25 +132,23 @@
                  (verlag li) ", "
                  (ort li)
                  ))
-
+;;Cite für Sammelbänder
 (defmethod cite ((li Sammelband))
   (string-append (car (autoren li))
                  " (" (jahr li) "). "
                  (titel li) ". In "
                  (nameHerausgeb li)
-                 "volume " (seriennr li) " of \""
+                 " volume " (seriennr li) " of \"" 
                  (reihe li) "\"."
                  (verlag li) ", "
                  (ort li) ", 1500 edition, p. " (seitenang li)))
-
+;;Cite für Zeitschriftenartikel
 (defmethod cite ((li Zeitschriftenartikel))
-  (string-append (car (autoren li)) " ("
-                 (jahr li) "). "
-                 (titel li) ". "
-                 (nameZeitsch li) ", " (nummerHe li)
-                 "(" (nummerB li) ")."))
+  (string-append (car (autoren li)) "(" (jahr li) "). "
+                 (titel li) ". " (nameZeitsch li) ", "
+                 (nummerHe li) "(" (nummerB li) ")."))
 
-
+;;Ausgeben der Citations 
 (cite Nessie)
 (cite Prefect)
 (cite Wells)

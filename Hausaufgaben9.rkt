@@ -71,7 +71,7 @@
   
   (nummerBand
    :reader nummerB
-   :initarg :numrBa
+   :initarg :nmrBa
    :type <string>)
   
   (nummerHeft

@@ -155,3 +155,95 @@
 (cite Nessie)
 (cite Prefect)
 (cite Wells)
+
+;1.3 fehlt noch!!!
+
+;Aufgabe 2.1
+#|
+;Fahrzeug 
+(defclass fahrzeug()
+   ( medium 
+     :reader med
+     :initarg :medium
+     :initvalue ""
+     :type <string>
+   )
+   :printer #t
+   )
+
+;Fahrzeuge auf verschiedenen Medien
+(defclass landFahrzeug (fahrzeug)
+   (medium :initvalue "Land")
+   :printer #t
+   )
+(defclass strassenFahrzeug (landFahrzeug)
+   (medium :initvalue "Straße")
+   :printer #t
+   )
+(defclass schienenFahrzeug (landFahrzeug)
+   (medium :initvalue "Schiene")
+   :printer #t
+   )
+
+(defclass wasserFahrzeug (fahrzeug)
+   (medium :initvalue "Wasser")
+   :printer #t
+   )
+(defclass luftFahrzeug (fahrzeug)
+   (medium :initvalue "Luft")
+   :printer #t
+   )
+
+;Mehrzweckfahrzeuge
+(defclass amphibienFahrzeug (wasserFahrzeug landFahrzeug )
+   :printer #t
+   )
+(defclass amphibienFlugzeug (strassenFahrzeug wasserFahrzeug luftFahrzeug)
+   :printer #t
+   )
+
+(defclass zweiWegeFahrzeug (strassenFahrzeug schienenFahrzeug)
+   :printer #t
+   )
+(defclass zeitZug (schienenFahrzeug luftFahrzeug)
+   :printer #t
+   )
+|#
+
+;Aufgabe 2.2
+(defclass fahrzeug ()
+   (medium 
+     :reader med
+     :initarg :medium
+     :initvalue ""
+     :type <string>     
+     )
+   (maxkmh
+     :reader max
+     :initarg :maxkmh
+     :initvalue 0
+     :type <number>
+     )
+   (zuladung 
+     :reader zul
+     :initarg :zuladung
+     :initvalue 0
+     :type <number>
+     )
+   (verbrauch
+     :reader ver
+     :initarg :verbrauch
+     :initvalue 0
+     :type <number>
+     )
+   (passagiere
+     :reader pas
+     :initarg :passagiere
+     :initvalue 0
+     :type <number>
+     )
+   :printer #t
+   )
+
+
+

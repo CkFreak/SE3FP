@@ -156,7 +156,20 @@
 (cite Prefect)
 (cite Wells)
 
-;1.3 fehlt noch!!!
+;;Aufgabe 1.3 Ergänzungsmethoden
+
+#|
+Ergänzungsmethoden sind Methoden, die in Unterklassen verwendet werden können, um das Verhalten einer geerbten Methode anzupassen.
+Um das zu tun, wird eine gleichnamige Methode in der Unterklasse definiert inklusive einem :before :after oder :around.
+Die Schlüsselwörter geben an, dass die neue Methode die alte nicht ersetzen soll, sondern vor oder nach der alten geerbten Methode ausgeführt werden soll.
+Gegenüber dem Super call haben Ergänzungsmethoden den Vorteil, dass keine Initalisierungen vergessen oder unterdrückt werden können.
+
+Im Kontext der gegebenen Aufgaben ließen sich Ergänzungsmethoden mit der cite Methode verwenden. Es wäre möglich eine Standart Ausgabe zu generieren für jeden der Literaturtypen und
+diese dann mit einer :before :after oder :around Ergänzung zu verfollständigen.
+
+Dafür müsste man die cite Methoden der Unterklassen mit dem :after Schlüsselwort erweitern und dafür sorgen, dass der String den man heraus bekommt bearbeitbar ist.
+Dann könnte man den Anfang jedes Cites gleich haben und nur das anpassen, was sich bei den verschiedenen Typen unterscheidet.
+|#
 
 ;Aufgabe 2.1
 #|

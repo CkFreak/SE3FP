@@ -288,7 +288,7 @@ Dann könnte man den Anfang jedes Cites gleich haben und nur das anpassen, was s
 
 ;Generische Funktionen
 (defgeneric getMedium ((fahr fahrzeug)) :combination generic-append-combination) ;Beim Medium wollen wir alle Medien aufgelistet haben.
-(defgeneric getMaxkmh ((fahr fahrzeug)) :combination generic-min-combination) ;Höchstgeschwindigkeit des schnellsten Fahrzeugs.Alternativ kann man mit generic-min-combination die Höchstgeschwindigkeit des langsamsten Fahrzeugs bekommen.
+(defgeneric getMaxkmh ((fahr fahrzeug)) :combination generic-max-combination) ;Höchstgeschwindigkeit des schnellsten Fahrzeugs.Alternativ kann man mit generic-min-combination die Höchstgeschwindigkeit des langsamsten Fahrzeugs bekommen.
 (defgeneric getZuladung ((fahr fahrzeug)) :combination generic-max-combination) ;Höchste Ladung die wir mit einem Fahrzeug Transportieren können.(auch hier alternativ mit min die kleinste Zuladung von unseren Fahrzeugen)
 (defgeneric getVerbrauch ((fahr fahrzeug)) :combination generic-min-combination);Sparmsamstes Fahrzeug
 (defgeneric getPassagiere ((fahr fahrzeug)) :combination generic-min-combination) ;Höchstanzahl der Passagiere die wir mit einem Fahrzeug transportieren können.

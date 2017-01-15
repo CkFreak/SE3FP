@@ -208,19 +208,10 @@ Dann könnte man den Anfang jedes Cites gleich haben und nur das anpassen, was s
    )
 
 ;Mehrzweckfahrzeuge
-(defclass amphibienFahrzeug (wasserFahrzeug landFahrzeug )
-   :printer #t
-   )
-(defclass amphibienFlugzeug (strassenFahrzeug wasserFahrzeug luftFahrzeug)
-   :printer #t
-   )
-
-(defclass zweiWegeFahrzeug (strassenFahrzeug schienenFahrzeug)
-   :printer #t
-   )
-(defclass zeitZug (schienenFahrzeug luftFahrzeug)
-   :printer #t
-   )
+(defclass amphibienFahrzeug (wasserFahrzeug landFahrzeug))
+(defclass amphibienFlugzeug (strassenFahrzeug wasserFahrzeug luftFahrzeug))
+(defclass zweiWegeFahrzeug (strassenFahrzeug schienenFahrzeug))
+(defclass zeitZug (schienenFahrzeug luftFahrzeug))
 |#
 
 ;Aufgabe 2.2
@@ -258,5 +249,48 @@ Dann könnte man den Anfang jedes Cites gleich haben und nur das anpassen, was s
    :printer #t
    )
 
+;Fahrzeuge auf verschiedenen Medien
+(defclass landFahrzeug (fahrzeug)
+   (medium :initvalue "Land")
+   :printer #t
+   )
+(defclass strassenFahrzeug (landFahrzeug)
+   (medium :initvalue "Straße")
+   :printer #t
+   )
+(defclass schienenFahrzeug (landFahrzeug)
+   (medium :initvalue "Schiene")
+   :printer #t
+   )
+
+(defclass wasserFahrzeug (fahrzeug)
+   (medium :initvalue "Wasser")
+   :printer #t
+   )
+(defclass luftFahrzeug (fahrzeug)
+   (medium :initvalue "Luft")
+   :printer #t
+   )
+
+;Mehrzweckfahrzeuge
+(defclass amphibienFahrzeug (wasserFahrzeug landFahrzeug)
+  :printer #t
+  )
+(defclass amphibienFlugzeug (strassenFahrzeug wasserFahrzeug luftFahrzeug)
+  :printer #t
+  )
+(defclass zweiWegeFahrzeug (strassenFahrzeug schienenFahrzeug)
+  :printer #t
+  )
+(defclass zeitZug (schienenFahrzeug luftFahrzeug)
+  :printer #t
+  )
+
+;Generische Funktionen
+(defgeneric getMedium ((fahr fahrzeug)) :combination generic-append-combination) ;Beim Medium wollen wir alle Medien aufgelistet haben.
+(defgeneric getMaxkmh ((fahr fahrzeug)) :combination generic-min-combination) ;Höchstgeschwindigkeit des schnellsten Fahrzeugs.Alternativ kann man mit generic-min-combination die Höchstgeschwindigkeit des langsamsten Fahrzeugs bekommen.
+(defgeneric getZuladung ((fahr fahrzeug)) :combination generic-max-combination) ;Höchste Ladung die wir mit einem Fahrzeug Transportieren können.(auch hier alternativ mit min die kleinste Zuladung von unseren Fahrzeugen)
+(defgeneric getVerbrauch ((fahr fahrzeug)) :combination generic-min-combination);Sparmsamstes Fahrzeug
+(defgeneric getPassagiere ((fahr fahrzeug)) :combination generic-min-combination) ;Höchstanzahl der Passagiere die wir mit einem Fahrzeug transportieren können.
 
 

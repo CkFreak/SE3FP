@@ -223,7 +223,7 @@ Dann könnte man den Anfang jedes Cites gleich haben und nur das anpassen, was s
      :type <string>     
      )
    (maxkmh
-     :reader max
+     :reader maxk
      :initarg :maxkmh
      :initvalue 0
      :type <number>
@@ -291,6 +291,31 @@ Dann könnte man den Anfang jedes Cites gleich haben und nur das anpassen, was s
 (defgeneric getMaxkmh ((fahr fahrzeug)) :combination generic-max-combination) ;Höchstgeschwindigkeit des schnellsten Fahrzeugs.Alternativ kann man mit generic-min-combination die Höchstgeschwindigkeit des langsamsten Fahrzeugs bekommen.
 (defgeneric getZuladung ((fahr fahrzeug)) :combination generic-max-combination) ;Höchste Ladung die wir mit einem Fahrzeug Transportieren können.(auch hier alternativ mit min die kleinste Zuladung von unseren Fahrzeugen)
 (defgeneric getVerbrauch ((fahr fahrzeug)) :combination generic-min-combination);Sparmsamstes Fahrzeug
-(defgeneric getPassagiere ((fahr fahrzeug)) :combination generic-min-combination) ;Höchstanzahl der Passagiere die wir mit einem Fahrzeug transportieren können.
+(defgeneric getPassagiere ((fahr fahrzeug)) :combination generic-+-combination) ;Insgesamte Anzahl der Passagiere die wir transportieren können.
 
+;Aufgabe 2.3
+;Die getPassagier Methode für alle Fahrzeuge
+(defmethod getPassagiere ((landFhrzg landFahrzeug))
+  (getPassagiere landFhrzg))
+(defmethod getPassagiere ((strFhrzg strassenFahrzeug))
+  (getPassagiere strFhrzg))
+(defmethod getPassagiere ((schiFhrzg schienenFahrzeug))
+  (getPassagiere schiFhrzg))
+(defmethod getPassagiere ((wasFhrzg wasserFahrzeug))
+  (getPassagiere wasFhrzg))
+(defmethod getPassagiere ((luftFhrzg luftFahrzeug))
+  (getPassagiere luftFhrzg))
+(defmethod getPassagiere ((ampFhrzg amphibienFahrzeug))
+  (getPassagiere ampFhrzg))
+(defmethod getPassagiere ((ampFlgzg amphibienFlugzeug))
+  (getPassagiere ampFlgzg))
+(defmethod getPassagiere ((zweiFhrzg zweiWegeFahrzeug))
+  (getPassagiere zweiFhrzg))
+(defmethod getPassagiere ((zeitFhrzg zeitZug))
+  (getPassagiere zeitFhrzg))
 
+;Mehrzeckfahrzeuge
+(define amphiFahrzeug (make amphibienFahrzeug :maxkmh 315 :zuladung 540 :verbrauch 9.9 :passagiere 5))
+(define 2wegeFahrzeug (make zweiWegeFahrzeug :maxkmh 56 :zuladung 100 :verbrauch 5000 :passagiere 300))
+(define amphiFlugzeug (make amphibienFlugzeug :maxkmh 945 :zuladung 5000 :verbrauch 1700 :passagiere 800))
+(define zug (make zeitZug :maxkmh 1500 :zuladung 999 :verbrauch 200 :passagiere 1000))

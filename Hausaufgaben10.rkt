@@ -11,3 +11,11 @@ Ney, Ramburger, Blaesche|#
                 0 0 0 6 0 0 0 0 5
                 8 0 2 0 0 0 0 0 0
                 0 0 4 2 0 0 0 0 8))
+
+(define (xy->index x y)
+  (+ x (go-down y)))
+
+(define (go-down y)
+(if (= 0 y)
+    10
+    (* y 9)))

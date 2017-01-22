@@ -239,3 +239,26 @@ möglich ausgewertet. Racket benutzt diese Form der Reduktion hinter den
 special form operators.
 (b)
 |#
+
+(require racket/trace)
+
+#| Aufgabe 8 |#
+; linearrekursiv:
+(define (laengen xs)
+  (if (= 0 (length xs))
+  (length xs)
+  (cons (length (car xs)) (laengen (cdr xs)))))
+
+(trace laengen)
+
+; endrekursiv
+; Verbergen des Akkumulators
+(define (laengen2 xs)
+  (laengen1 xs '()))
+
+(define (laengen1 xs acc)
+  (if(null? xs)
+     acc
+     (laengen1 (cdr xs) (cons (length (car xs)) acc))))
+                
+(trace laengen2)

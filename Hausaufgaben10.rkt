@@ -41,3 +41,26 @@ Objekte verweisen.
 (k) 2.
 (l) #t.
 |#
+
+#| Aufgabe 2 |#
+
+(define *a* 10)
+(define *b* '*a*)
+(define (merke x) (lambda () x))
+(define (test x)
+  (let ((x (+ x *a*)))
+    (+ x 2)))
+
+#|
+(a) 10. Wohdefiniert.
+(b) Geht nicht, da *b* nicht zu einer Zahl evaluiert. Nicht wohldefiniert.
+(c) 20. Durch das eval wird das '*a* nun ausgewertet zu 10.
+(d) #f. Die 1. Bed. ist nicht erfüllt. Ebenso kann '*a* nicht mit >
+verglichen werden. Nicht wohldefiniert.
+(e) #f. Weder ist 10 > 10, noch darf man durch 0 teilen.
+(f) #f. ?
+(g) 5. ?
+(h) 16. 4 + 10 + 2, da dass x immer erst zu x + 10 ausgewertet wird und
+anschließend + 2 gerechnet wird.
+Was genau bedeutet Wohldefinertheit im Informatik Kontext?
+|#

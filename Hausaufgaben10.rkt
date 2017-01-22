@@ -79,3 +79,24 @@ Was genau bedeutet Wohldefinertheit im Informatik Kontext?
 ; (b):
 (define (mytan a)
   (/ (sin a) (blub a)))
+
+#| Aufgabe 5 |#
+; (a):
+(/ (+ 1 4) (- 2 1))
+; (b):
+(/ (- 2 (/ (+ 1 3) (+ 3 (* 2 3)))) (sqrt 3))
+
+#|Aufgabe 6 |#
+; (1 + 2 + 3) * (2 - 3 - 2/3)
+
+#| Aufgabe 7
+(a) Bei innerer Reduktion wird zunächst versucht, die 'tiefste' Ebene
+auszuwerten. Von da geht man immer weiter hoch, bis schhließlich der
+gesamte Ausdruck ausgewertet wird. Dieses Reduktionsmodell benutzt Racket
+normalerweise.
+Bei äußerer Reduktion wird zunächst versucht die 'höchste' Ebene als
+erstes auszuwerten. Die darin enthaltenen Ausdrücke werden so spät wie
+möglich ausgewertet. Racket benutzt diese Form der Reduktion hinter den
+special form operators.
+(b)
+|#

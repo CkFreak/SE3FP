@@ -64,3 +64,18 @@ verglichen werden. Nicht wohldefiniert.
 anschließend + 2 gerechnet wird.
 Was genau bedeutet Wohldefinertheit im Informatik Kontext?
 |#
+
+#| Aufgabe 3 |#
+; (a):
+(+ (* 3 4) (* 5 6))
+; (b):
+(define (blub x)
+  (sqrt (- 1 (sqr (sin x)))))
+
+#| Aufgabe 4 |#
+; (a):
+(define (c a b)
+  (sqrt (+ (sqr a) (sqr b))))
+; (b):
+(define (mytan a)
+  (/ (sin a) (blub a)))

@@ -262,3 +262,57 @@ special form operators.
      (laengen1 (cdr xs) (cons (length (car xs)) acc))))
                 
 (trace laengen2)
+
+#| Aufgabe 9 |#
+
+; (a):
+; Die Konstruktorfunktion einer laenge mit den Feldern value und unit
+(define-struct laenge (value unit) #:mutable)
+(define (make-length value unit)
+  (make-laenge value unit))
+
+; Bsp:
+(define XXX (make-length 3 'cm))
+
+; (b):
+; Die Selektorfunktion für das Feld value
+(define (value-of-length len)
+  (laenge-value len))
+
+; Die Selektorfunktion für das Feld unit
+(define (unit-of-length len)
+  (laenge-unit len))
+
+; Bsp:
+(writeln (value-of-length XXX))
+
+(writeln (unit-of-length XXX))
+
+; (c):
+; Zum Skalieren der Längenangaben
+(define (scale-length len fac)
+  (set-laenge-value! len (* (value-of-length len) fac)))
+
+; Bsp:
+(scale-length XXX 2)
+(write (value-of-length XXX))
+
+; (d):
+
+(define *conversiontable*
+  '( (m . 1)
+     (cm . 0.01)
+     (mm . 0.001)
+     (km . 1000)
+     (inch . 0.0254)
+     (feet . 0.3048)
+     (yard . 0.9144)))
+
+; Auslesen des Umrechnungsfaktors
+(define (factor unit)
+  (cdr (assoc unit *conversiontable*)))
+
+; Umwandeln in Meterangaben
+(define (length->meter x)
+  (let ([a (factor (cdr x))])
+    a))

@@ -313,6 +313,35 @@ special form operators.
   (cdr (assoc unit *conversiontable*)))
 
 ; Umwandeln in Meterangaben
-(define (length->meter x)
-  (let ([a (factor (cdr x))])
-    a))
+(define (length->meter len)
+  (let ([a (second len)])
+    (cons (* (car len)(factor a)) 'm)))
+
+;Vergleich 2er Längen
+(define (length= len1 len2)
+  (equal? (length->meter len1) (length->meter len2)))
+
+(define (length< len1 len2)
+  (< (car (length->meter len1)) (car (length->meter len2))))
+
+(define (length> len1 len2)
+  (> (car (length->meter len1)) (car (length->meter len2))))
+
+; Addition und Subtraktion
+(define (length+ len1 len2)
+  (cons (+ (car (length->meter len1)) (car (length->meter len2))) 'm))
+
+(define (length- len1 len2)
+  (cons (- (car (length->meter len1)) (car (length->meter len2))) 'm))
+
+; (e):
+(define liste '((6 km) (2 feet) (1 cm) (3 inch)))
+
+;Abbildung der Liste auf Liste mit Längenangaben in Metern
+(define (inMetern xs)
+  (map length->meter xs))
+;unvollständig
+;Liste kürzer als 1m
+(define (kürzer1m xs)
+  (filter (inMetern xs)))
+

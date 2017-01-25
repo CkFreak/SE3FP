@@ -245,7 +245,7 @@ special form operators.
 #| Aufgabe 8 |#
 ; linearrekursiv:
 (define (laengen xs)
-  (if (= 0 (length xs))
+  (if (empty? xs)
   (length xs)
   (cons (length (car xs)) (laengen (cdr xs)))))
 
